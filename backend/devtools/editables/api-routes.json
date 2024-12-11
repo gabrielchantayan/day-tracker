@@ -1,0 +1,247 @@
+{
+	"auth": {
+		"generate-otp": {
+			"name": "Generate OTP",
+			"description": "Generates an OTP for a specified user",
+			"type": "POST",
+			"primary-function-file": "utils/auth/otp.ts",
+			"primary-function": "generate_otp",
+			"parameters": {
+				"email": {
+					"type": "string",
+					"required": true,
+					"description": "Email address"
+				}
+			},
+			"responses": {
+				"success": {
+					"success": true,
+					"data": { "timestamp": "number" },
+					"message": "auth.otp.sent",
+					"description": "The OTP is successfully sent"
+				}
+			}
+		},
+		"resend-otp": {
+			"name": "Resend OTP",
+			"description": "Resends an OTP for a specified user",
+			"type": "POST",
+			"primary-function-file": "utils/auth/otp.ts",
+			"primary-function": "resend_otp",
+			"parameters": {
+				"email": {
+					"type": "string",
+					"required": true,
+					"description": "Email address"
+				}
+			},
+			"responses": {
+				"success": {
+					"success": true,
+					"data": null,
+					"message": "auth.otp.resend",
+					"description": "The OTP is successfully resent"
+				},
+				"otp-not-found": {
+					"success": false,
+					"data": null,
+					"message": "error.otp.not-found",
+					"description": "The OTP is not found"
+				},
+				"otp-expired": {
+					"success": false,
+					"data": null,
+					"message": "error.otp.expired",
+					"description": "The OTP is expired"
+				}
+			}
+		},
+		"verify-otp": {
+			"name": "Verify OTP",
+			"description": "Verifies an OTP for a specified user",
+			"type": "POST",
+			"primary-function-file": "utils/auth/otp.ts",
+			"primary-function": "verify_otp",
+			"parameters": {
+				"email": {
+					"type": "string",
+					"required": true,
+					"description": "Email address"
+				},
+				"code": {
+					"type": "string",
+					"required": true,
+					"description": "One-time password"
+				}
+			},
+			"responses": {
+				"success": {
+					"success": true,
+					"data": null,
+					"message": "auth.otp.verified",
+					"description": "The OTP is successfully verified"
+				},
+				"otp-not-found": {
+					"success": false,
+					"data": null,
+					"message": "error.otp.not-found",
+					"description": "There is no OTP for the specified user"
+				},
+				"otp-expired": {
+					"success": false,
+					"data": null,
+					"message": "error.otp.expired",
+					"description": "The OTP is expired"
+				},
+				"otp-invalid": {
+					"success": false,
+					"data": null,
+					"message": "error.otp.invalid",
+					"description": "The OTP is invalid"
+				}
+			}
+		},
+		"validate-token": {
+			"name": "Validate token",
+			"need-whole-req": false,
+			"description": "Validates a token for a specified user",
+			"type": "POST",
+			"primary-function-file": "utils/auth/token.ts",
+			"primary-function": "validate_token",
+			"parameters": {
+				"email": {
+					"type": "string",
+					"required": true,
+					"description": "Email address"
+				},
+				"token": {
+					"type": "string",
+					"required": true,
+					"description": "User's token"
+				}
+			},
+			"responses": {
+				"success": {
+					"success": true,
+					"data": null,
+					"message": "auth.token.validated",
+					"description": "The token is successfully validated"
+				},
+				"user-not-found": {
+					"success": false,
+					"data": null,
+					"message": "error.auth.user.not-found",
+					"description": "The specified user is not found in the database"
+				},
+				"token-not-found": {
+					"success": false,
+					"data": null,
+					"message": "error.auth.token.not-found",
+					"description": "The user does not have a token in the database<br />(This should never happen)"
+				},
+				"token-invalid": {
+					"success": false,
+					"data": null,
+					"message": "error.auth.token.invalid",
+					"description": "The given token does not match the user's token in the database"
+				},
+				"token-expired": {
+					"success": false,
+					"data": null,
+					"message": "error.auth.token.expired",
+					"description": "The token is expired"
+				},
+				"field-missing": {
+					"success": false,
+					"data": null,
+					"message": "error.api.field.missing",
+					"description": "A required field is missing"
+				}
+			}
+		},
+		"grant-user-new-token": {
+			"name": "Grant user new token",
+			"description": "Grants a user a new token",
+			"type": "POST",
+			"primary-function-file": "utils/auth/token.ts",
+			"primary-function": "grant_user_new_token",
+			"parameters": {
+				"user": {
+					"type": "string",
+					"required": true,
+					"description": "User"
+				}
+			},
+			"responses": {
+				"success": {
+					"success": true,
+					"data": null,
+					"message": "auth.token.granted",
+					"description": "The user's new token is successfully granted"
+				},
+				"user-not-found": {
+					"success": false,
+					"data": null,
+					"message": "error.auth.user.not-found",
+					"description": "The specified user is not found in the database"
+				}
+			}
+		},
+		"grant-user-token": {
+			"name": "Grant user token",
+			"description": "Grants a user their token if it exists. If not, it creates a new token",
+			"type": "POST",
+			"primary-function-file": "utils/auth/token.ts",
+			"primary-function": "grant_user_token",
+			"parameters": {
+				"user": {
+					"type": "string",
+					"required": true,
+					"description": "User"
+				}
+			},
+			"responses": {
+				"success": {
+					"success": true,
+					"data": null,
+					"message": "auth.token.granted",
+					"description": "The user's token is successfully granted"
+				},
+				"user-not-found": {
+					"success": false,
+					"data": null,
+					"message": "error.auth.user.not-found",
+					"description": "The specified user is not found in the database"
+				}
+			}
+		},
+		"revoke-user-token": {
+			"name": "Revoke user token",
+			"description": "Revokes a user's token. Used for global logout",
+			"type": "POST",
+			"primary-function-file": "utils/auth/token.ts",
+			"primary-function": "revoke_user_token",
+			"parameters": {
+				"user": {
+					"type": "string",
+					"required": true,
+					"description": "User"
+				}
+			},
+			"responses": {
+				"success": {
+					"success": true,
+					"data": null,
+					"message": "auth.token.revoked",
+					"description": "The user's token is successfully revoked"
+				},
+				"user-not-found": {
+					"success": false,
+					"data": null,
+					"message": "error.auth.user.not-found",
+					"description": "The specified user is not found in the database"
+				}
+			}
+		}
+	}
+}

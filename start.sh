@@ -1,0 +1,1 @@
+concurrently "npm run dev --prefix client" "npm run dev --prefix backend"

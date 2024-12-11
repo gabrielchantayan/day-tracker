@@ -1,0 +1,39 @@
+{
+	"name": "day-tracker-backend",
+	"description": "day-tracker-backend",
+	"author": "Gabriel Chantayan",
+	"version": "0.0.1",
+	"main": "server.ts",
+	"directories": {
+		"test": "tests"
+	},
+	"scripts": {
+		"dev": "nodemon -r dotenv/config server.ts dotenv_config_path=./.env.dev -e ts",
+		"gen-api": "ts-node ./devtools/tools/generate-api.ts",
+		"gen-loc": "ts-node ./devtools/tools/generate-locales.ts",
+		"gen-api-doc": "ts-node ./devtools/tools/generate-api-docs.ts",
+		"gen-db-doc": "ts-node ./devtools/tools/generate-db-docs.ts",
+		"gen-all": "npm run gen-api && npm run gen-api-doc && npm run gen-db-doc"
+	},
+	"dependencies": {
+		"@types/cors": "^2.8.17",
+		"@types/express": "^4.17.21",
+		"@types/mongodb": "^4.0.6",
+		"axios": "^0.27.2",
+		"bcrypt": "^5.1.1",
+		"concurrently": "^7.4.0",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.2",
+		"express": "^4.21.0",
+		"mongodb": "^6.9.0",
+		"nodemailer": "^6.9.15",
+		"nodemon": "^2.0.20",
+		"openai": "^4.65.0",
+		"openpgp": "^5.11.2",
+		"puppeteer": "^23.5.3"
+	},
+	"devDependencies": {
+		"ts-node": "^10.9.2",
+		"typescript": "^5.6.2"
+	}
+}
