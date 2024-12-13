@@ -147,5 +147,20 @@
 		"Criminal Minds",
 		"Keep your hands off Eizouken!",
 		"Breaking Bad"
-	]
-}
+	],
+    "languages": [
+        "French",
+        "Italian",
+        "Russian",
+        "German",
+        "Farsi",
+        "Armenian",
+        "Lebanese",
+        "Greek",
+        "Serbian",
+        "Turkish",
+        "Kazakh",
+        "Mandarin",
+        "Uzbek"
+    ]
+    }

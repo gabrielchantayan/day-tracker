@@ -9,7 +9,7 @@ const client = new MongoClient(db_url, {
 	useUnifiedTopology: true,
 } as MongoClientOptions);
 
-const dbName = 'jobs';
+const dbName = 'day_tracker';
 
 client.connect();
 

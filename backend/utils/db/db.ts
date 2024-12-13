@@ -13,10 +13,7 @@ const delete_one = mongo.delete_one;
 const collections = [
     'otp', 
     'users',
-    'answers',
-    'cooldowns',
-    'ai_calls',
-    'statistics',
+    'days',
 ];
 
 

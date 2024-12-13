@@ -21,14 +21,10 @@ const log = (message: any, level: number = 4, prefix = 'DEBUG') => {
 	}
 };
 
-const log_ai = (message: any, level: number = 4): void => log(message, level, 'AI');
-
 const log_auth = (message: string, level: number = 4): void => log(message, level, 'AUTH');
-
-const log_browser_action = (message: string, level: number = 5): void => log(message, level, 'BROWSER');
 
 const log_db = (message: any, level: number = 4): void => log(message, level, 'DB');
 
 const log_email = (message: string, level: number = 4): void => log(message, level, 'EMAIL');
 
-export { log_db, log_email, log_ai, log, log_auth, log_browser_action };
+export { log_db, log_email, log, log_auth };

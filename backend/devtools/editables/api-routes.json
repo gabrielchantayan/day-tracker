@@ -243,5 +243,16 @@
 				}
 			}
 		}
+	},
+	"test": {
+		"test": {
+			"name": "Test",
+			"description": "Test API",
+			"type": "POST",
+			"primary-function-file": "utils/test.ts",
+			"primary-function": "test",
+			"parameters": {},
+			"responses": {}
+		}
 	}
 }
