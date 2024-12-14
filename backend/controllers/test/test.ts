@@ -1,5 +1,5 @@
 import async_wrapper from '../../middleware/async-wrapper';
-import { test as main_function } from '../../utils/test';
+import { test as main_function } from '../../utils/misc/test';
 
 // Test
 // Test API

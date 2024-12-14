@@ -144,6 +144,30 @@
 
 ---
 
+#### DATA
+
+<details>
+<summary><code>POST</code> <code><b>/api/data/update_data</b></code> <code>Updates data</code></summary>
+
+##### Parameters
+> | Name | Required | Data Type | Description |
+> |---|---|---|---|
+> | user | true | string | User | 
+> | date | true | string | Date | 
+> | data | true | object | Data | 
+
+
+##### Responses
+
+> | Name | Success | Description | Data | Message | 
+> |---|---|---|---|---|
+
+</details>
+
+
+
+---
+
 #### TEST
 
 <details>

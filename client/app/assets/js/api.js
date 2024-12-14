@@ -1,7 +1,9 @@
 const api_url = 'http://localhost:3080/api/';
 export const post = async (url, data) => {
+
+	console.log(data);
     
-    const response = await fetch(api_url + url, {
+    const response = await fetch(api_url + url.join('/'), {
 		method: 'POST',
         // TODO: Disable this outside of development
 		mode: 'cors',

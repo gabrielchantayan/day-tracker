@@ -249,9 +249,36 @@
 			"name": "Test",
 			"description": "Test API",
 			"type": "POST",
-			"primary-function-file": "utils/test.ts",
+			"primary-function-file": "utils/misc/test.ts",
 			"primary-function": "test",
 			"parameters": {},
+			"responses": {}
+		}
+	},
+	"data": {
+		"update_data": {
+			"name": "Update data",
+			"description": "Updates data",
+			"type": "POST",
+			"primary-function-file": "utils/data/data.ts",
+			"primary-function": "update_data",
+			"parameters": {
+				"user": {
+					"type": "string",
+					"required": true,
+					"description": "User"
+				},
+				"date"	: {
+					"type": "string",
+					"required": true,
+					"description": "Date"
+				},
+				"data": {
+					"type": "object",
+					"required": true,
+					"description": "Data"
+				}
+			},
 			"responses": {}
 		}
 	}

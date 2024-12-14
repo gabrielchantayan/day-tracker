@@ -6,6 +6,7 @@ import MultipleSelector from '../ui/multiple-selector';
 import MultipleSelectorInput from './multi-select-input';
 import { Button } from '../ui/button';
 import { post } from '@/app/assets/js/api';
+import { get_current_date } from '@/app/assets/js/utils';
 
 const FormBuilder = ({ structure, form }: any) => {
 	const formd = useForm();
@@ -13,7 +14,15 @@ const FormBuilder = ({ structure, form }: any) => {
 
     const handle_submit = () => {
         console.log(formd.getValues());
-        post('/test', formd.getValues());
+
+		let current_date = get_current_date();
+		let current_user = 'me@gabrielchantayan.com'
+
+        post(['data', 'update_data'], {	
+			user: current_user,
+			date: current_date,
+			data: {...formd.getValues()},
+		});
     };
 
 	let fin = (
