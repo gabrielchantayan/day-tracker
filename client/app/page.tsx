@@ -9,6 +9,7 @@ import TextInput from '@/components/form-objects/text-input';
 import NumberInput from '@/components/form-objects/number-input';
 
 import FormBuilder from '@/components/form-objects/form-builder';
+import { format_date, get_current_date } from './assets/js/utils';
 
 const get_random_item = (item: keyof typeof random_items) => {
 	return random_items[item][Math.floor(Math.random() * random_items[item].length)];
@@ -20,22 +21,22 @@ const structure = {
 		fields: {
 			breakfast: {
 				name: 'Breakfast',
-				type: 'text',
+				type: 'multi-select',
 				placeholder: get_random_item('breakfast'),
 			},
 			lunch: {
 				name: 'Lunch',
-				type: 'text',
+				type: 'multi-select',
 				placeholder: get_random_item('lunch'),
 			},
 			dinner: {
 				name: 'Dinner',
-				type: 'text',
+				type: 'multi-select',
 				placeholder: get_random_item('dinner'),
 			},
 			snacks: {
 				name: 'Snacks',
-				type: 'text',
+				type: 'multi-select',
 				placeholder: get_random_item('snacks'),
 			},
 		},
@@ -67,36 +68,34 @@ const structure = {
 				options: [
 					{
 						label: 'Epic Universe',
-						value: 'epic-universe',
-						group: 'Work',
+						value: 'Epic Universe',
+
 					},
 					{
 						label: 'Commodity',
-						value: 'universal-commodity',
-						group: 'Work',
+						value: 'Commodity',
+
 					},
-					{ label: 'Outlook', value: 'universal-outlook', group: 'Work' },
-					{ label: "Aldi's", value: 'aldis', group: 'Stores' },
-					{ label: 'Walmart', value: 'walmart', group: 'Stores' },
+					{ label: 'Outlook', value: 'Outlook'},
+					{ label: "Aldi's", value: 'Aldis'},
+					{ label: 'Walmart', value: 'Walmart'},
 					{
 						label: "Austin's Coffee",
-						value: 'austins-coffee',
-						group: 'Social',
+						value: 'Austins Coffee',
 					},
 					{
 						label: "Zach and Julia's",
-						value: 'zach-and-julias',
-						group: 'Social',
+						value: 'Zach and Julias',
 					},
 				],
 			},
 			productivity: {
 				name: 'Productivity',
-				type: 'text',
+				type: 'multi-select',
 			},
 			excersise: {
 				name: 'Excersise',
-				type: 'text',
+				type: 'multi-select',
 			},
 		},
 	},
@@ -105,24 +104,24 @@ const structure = {
 		fields: {
 			books_read: {
 				name: 'Books Read',
-				type: 'text',
+				type: 'multi-select',
 				placeholder: get_random_item('books'),
 			},
 			movies_watched: {
 				name: 'Movies Watched',
-				type: 'text',
+				type: 'multi-select',
 				placeholder: get_random_item('movies'),
 			},
 			shows_watched: {
 				name: 'Shows Watched',
-				type: 'text',
+				type: 'multi-select',
 				placeholder: get_random_item('tv'),
 			},
 			games_played: {
 				name: 'Games Played',
-				type: 'text',
+				type: 'multi-select',
 				placeholder: 'Factorio',
-			}
+			},
 		},
 	},
 	language: {
@@ -131,7 +130,7 @@ const structure = {
 			duolingo_language: {
 				name: 'Duolingo Language',
 				type: 'text',
-				placeholder: get_random_item('languages')
+				placeholder: get_random_item('languages'),
 			},
 			duolingo_lessons: {
 				name: 'Duolingo Lessons',
@@ -140,17 +139,47 @@ const structure = {
 			mango_language: {
 				name: 'Mango Language',
 				type: 'text',
-				placeholder: get_random_item('languages')
+				placeholder: get_random_item('languages'),
 			},
 			mango_lessons: {
 				name: 'Mango Lessons',
-				type: 'number',			
+				type: 'number',
 			},
 			mango_reviews: {
 				name: 'Mango Reviews',
 				type: 'number',
-			}
-		}
+			},
+		},
+	},
+	emotions: {
+		name: 'Emotions',
+		fields: {
+			happiness: {
+				name: 'Happiness',
+				type: 'slider',
+				'default-value': 75
+			},
+			loneliness: {
+				name: 'Loneliness',
+				type: 'slider',
+				'default-value': 0
+			},
+			anxiety: {
+				name: 'Anxiety',
+				type: 'slider',
+				'default-value': 0
+			},
+			anger: {
+				name: 'Anger',
+				type: 'slider',
+				'default-value': 0
+			},
+			exhaustion: {
+				name: 'Exhaustion',
+				type: 'slider',
+				'default-value': 10
+			},
+		},
 	},
 	sex: {
 		name: ';)',
@@ -166,9 +195,9 @@ const structure = {
 			սեքս: {
 				name: 'սեքս',
 				type: 'number',
-			}
-		}
-	}
+			},
+		},
+	},
 };
 
 
@@ -189,10 +218,12 @@ export default function Home() {
 
 	return (
 		<div className='font-[family-name:var(--font-geist-sans)]'>
-			<header className='bg-stone-700 p-2'>
+			<header className='bg-stone-400 dark:bg-stone-700 p-2'>
 				<div className='dark:text-white text-lg font-bold ml-2'>Day Tracker</div>
 			</header>
-			<main className='flex flex-col gap-6 px-10 py-5 sm:px-20 sm:py-10 w-full md:w-3/4'>
+			<main className='flex flex-col gap-6 px-10 py-5 sm:px-20 sm:py-10 w-full md:w-4/5'>
+
+				<h1 className='text-6xl font-light'>{format_date(get_current_date()).toLocaleLowerCase()}</h1>
 
 				<FormBuilder structure={structure} form={form} />
 

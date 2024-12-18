@@ -17,3 +17,9 @@ export const get_current_date = () => {
     const year = date.getFullYear();
     return `${year}/${month}/${day}`;
 }
+
+
+// Format a date in locale string with weekday, short month and day
+export const format_date = (date) => {
+    return new Date(date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+}

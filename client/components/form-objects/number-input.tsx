@@ -7,14 +7,16 @@ const NumberInput = ({
 	id,
 	label,
 	placeholder,
-	width = "44",
 	form,
+	value = 0,
+	on_change
 }: {
 	id: string;
 	label: string;
 	placeholder: string;
-	width?: number;
 	form: any;
+	value?: number;
+	on_change?: any
 }) => {
 
 
@@ -22,19 +24,19 @@ const NumberInput = ({
 		<div className={`grid w-28 md:w-40 items-center gap-1.5`}>
 			<Label htmlFor={id}>{label}</Label>
 			<div className='flex flex-row gap-2'>
-				{/* <Button type='button' variant={'secondary'} onClick={subtract_one}>
+				<Button type='button' variant={'secondary'} onClick={() => on_change(value as number - 1)}>
 					-
-				</Button> */}
+				</Button>
 				<Input
 					type='number'
 					id={id}
 					placeholder={placeholder}
-					{...form}
-					onChange={(e) => form.setValue(id, e.target.value)}
+					value={value}
+					onChange={on_change}
 				/>
-				{/* <Button type='button' variant={'secondary'} onClick={add_one}>
+				<Button type='button' variant={'secondary'} onClick={() => on_change(value as number + 1)}>
 					+
-				</Button> */}
+				</Button>
 			</div>
 		</div>
 	);

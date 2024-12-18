@@ -8,27 +8,37 @@ const MultipleSelectorInput = ({
 	label,
 	placeholder,
 	options,
+	max_width,
 	form,
+	value,
+	on_change
 }: {
 	id: string;
 	label: string;
 	placeholder: string;
 	options: any;
+	max_width: number;
 	form: any;
+	value?: any;
+	on_change?: any
 }) => {
 	return (
-		<div className={`grid w-full max-w-md items-center gap-1.5`}>
+		<div className={`grid w-full max-w-52 items-center gap-1.5`}>
 			<Label htmlFor={id}>{label}</Label>
 			<MultipleSelector
 				defaultOptions={options}
 				placeholder={placeholder}
 				creatable
+				hidePlaceholderWhenSelected
+				hideClearAllButton
 				emptyIndicator={
 					<p className='text-center leading-10 text-stone-600 dark:text-stone-400'>no results found.</p>
 				}
 				groupBy='group'
-				{...form}
-				onChange={(e) => form.setValue(id, e)}
+				// {...form}
+				// onChange={(e) => form.setValue(id, e)}
+				onChange={on_change}
+				value={value}
 			/>
 		</div>
 	);
