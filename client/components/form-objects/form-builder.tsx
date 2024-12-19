@@ -107,56 +107,7 @@ const FormBuilder = ({ structure, form }: any) => {
 											)}
 										/>
 									);
-									// return (
-									// 	<FormField
-									// 		key={field}
-									// 		control={formd.control}
-									// 		name={field}
-									// 		render={({ field }) => (
-									// 			<FormItem>
-									// 				<FormControl>
-									// 					{/* this is SUCH bullshit lmfao */}
-
-									// 					{values.type === 'text' ? (
-									// 						<TextInput
-									// 							id={field.name}
-									// 							label={values.name}
-									// 							placeholder={values.placeholder || values.name}
-									// 							form={formd}
-									// 						/>
-									// 					) : values.type === 'number' ? (
-									// 						<NumberInput
-									// 							id={field.name}
-									// 							label={values.name}
-									// 							placeholder={values.placeholder || 0}
-									// 							form={formd}
-									// 						/>
-									// 					) : values.type === 'multi-select' ? (
-									// 						<MultipleSelectorInput
-									// 							id={field.name}
-									// 							label={values.name}
-									// 							placeholder={values.placeholder}
-									// 							options={values.options}
-									// 							form={formd}
-									// 							max_width={values['max-width'] || 'md'}
-									// 						/>
-									// 					) : values.type === 'slider' ? (
-									// 						<SliderInput
-									// 							id={field.name}
-									// 							label={values.name}
-									// 							form={formd}
-									// 							default_value={values['default-value']}
-									// 							max_value={values['max-value']}
-									// 							step={values.step}
-									// 						/>
-									// 					) : (
-									// 						<p>Not supported</p>
-									// 					)}
-									// 				</FormControl>
-									// 			</FormItem>
-									// 		)}
-									// 	/>
-									// );
+									
 								})}
 							</div>
 						</div>

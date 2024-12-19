@@ -21,20 +21,14 @@ const NumberInput = ({
 
 
 	return (
-		<div className={`grid w-28 md:w-40 items-center gap-1.5`}>
+		<div className={`flex flex-col w-28 md:w-40 gap-1.5`}>
 			<Label htmlFor={id}>{label}</Label>
 			<div className='flex flex-row gap-2'>
-				<Button type='button' variant={'secondary'} onClick={() => on_change(value as number - 1)}>
+				<Button type='button' variant={'secondary'} onClick={() => on_change((value as number) - 1)}>
 					-
 				</Button>
-				<Input
-					type='number'
-					id={id}
-					placeholder={placeholder}
-					value={value}
-					onChange={on_change}
-				/>
-				<Button type='button' variant={'secondary'} onClick={() => on_change(value as number + 1)}>
+				<Input type='number' id={id} placeholder={placeholder} value={value} onChange={on_change} />
+				<Button type='button' variant={'secondary'} onClick={() => on_change((value as number) + 1)}>
 					+
 				</Button>
 			</div>

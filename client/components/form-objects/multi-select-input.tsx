@@ -23,7 +23,7 @@ const MultipleSelectorInput = ({
 	on_change?: any
 }) => {
 	return (
-		<div className={`grid w-full max-w-52 items-center gap-1.5`}>
+		<div className={`flex flex-col w-full max-w-52 gap-1.5`}>
 			<Label htmlFor={id}>{label}</Label>
 			<MultipleSelector
 				defaultOptions={options}
