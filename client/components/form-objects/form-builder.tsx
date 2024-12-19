@@ -10,9 +10,21 @@ import { get_current_date } from '@/app/assets/js/utils';
 import { Slider } from '../ui/slider';
 import SliderInput from './slider-input';
 import { Controller } from 'react-hook-form';
+import { useEffect } from 'react';
 
 const FormBuilder = ({ structure, form }: any) => {
 	const formd = useForm();
+
+	const get_data_from_server = async (date: string) => {
+		const res = await post(['data', 'get_data'], { user: 'me@gabrielchantayan.com', date: date });
+
+		if (res.success) {
+
+			console.log('res success', res);
+
+			formd.reset(res.data.data);
+		}
+	};
 
 	const handle_submit = () => {
 		console.log(formd.getValues());
@@ -27,26 +39,33 @@ const FormBuilder = ({ structure, form }: any) => {
 		});
 	};
 
+	useEffect(() => {
+		get_data_from_server(get_current_date());
+	}, []);
+
 	let fin = (
 		<Form {...formd}>
 			<form className='flex flex-col gap-5 sm:gap-3 flex-wrap'>
-				{Object.entries(structure).map(([category, items]: [string, any]) => {
+
+		
+
+				{structure.map((category: any) => {
 					return (
-						<div key={category} className='flex flex-wrap flex-col gap-1'>
-							<p className='font-bold text-lg'>{items.name}</p>
+						<div key={category.name} className='flex flex-wrap flex-col gap-1'>
+							<p className='font-bold text-lg'>{category.name}</p>
 
 							<div className='flex flex-row flex-wrap gap-4 align-bottom'>
-								{Object.entries(items.fields).map(([item_field, values]: [string, any]) => {
+								{category.fields.map((values: any, i: number) => {
 									return (
 										<Controller
-											key={item_field}
+											key={i}
 											control={formd.control}
-											name={item_field}
+											name={values.name}
 											render={({ field: { onChange, onBlur, value, ref } }) => (
 												<>
 													{values.type === 'text' ? (
 														<TextInput
-															id={item_field}
+															id={values.item_field}
 															label={values.name}
 															placeholder={values.placeholder || values.name}
 															form={formd}
@@ -55,7 +74,7 @@ const FormBuilder = ({ structure, form }: any) => {
 														/>
 													) : values.type === 'number' ? (
 														<NumberInput
-															id={item_field}
+															id={values.item_field}
 															label={values.name}
 															placeholder={values.placeholder || 0}
 															form={formd}
@@ -64,7 +83,7 @@ const FormBuilder = ({ structure, form }: any) => {
 														/>
 													) : values.type === 'multi-select' ? (
 														<MultipleSelectorInput
-															id={item_field}
+															id={values.item_field}
 															label={values.name}
 															placeholder={values.placeholder}
 															options={values.options}
@@ -75,7 +94,7 @@ const FormBuilder = ({ structure, form }: any) => {
 														/>
 													) : values.type === 'slider' ? (
 														<SliderInput
-															id={item_field}
+															id={values.item_field}
 															label={values.name}
 															form={formd}
 															value={value}

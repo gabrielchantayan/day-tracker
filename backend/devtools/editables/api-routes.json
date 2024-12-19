@@ -280,6 +280,31 @@
 				}
 			},
 			"responses": {}
+		},
+		"get_data": {
+			"name": "Get data",
+			"description": "Gets data",
+			"type": "POST",
+			"primary-function-file": "utils/data/data.ts",
+			"primary-function": "get_data",
+			"parameters": {
+				"user": {
+					"type": "string",
+					"required": true,
+					"description": "User"
+				},
+				"token": {
+					"type": "string",
+					"required": true,
+					"description": "Token"
+				},
+				"date"	: {
+					"type": "string",
+					"required": true,
+					"description": "Date"
+				}
+			},
+			"responses": {}
 		}
 	}
 }

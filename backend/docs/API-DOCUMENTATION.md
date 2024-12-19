@@ -164,6 +164,24 @@
 
 </details>
 
+<details>
+<summary><code>POST</code> <code><b>/api/data/get_data</b></code> <code>Gets data</code></summary>
+
+##### Parameters
+> | Name | Required | Data Type | Description |
+> |---|---|---|---|
+> | user | true | string | User | 
+> | token | true | string | Token | 
+> | date | true | string | Date | 
+
+
+##### Responses
+
+> | Name | Success | Description | Data | Message | 
+> |---|---|---|---|---|
+
+</details>
+
 
 
 ---

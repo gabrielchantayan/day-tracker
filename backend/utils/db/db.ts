@@ -14,6 +14,7 @@ const collections = [
     'otp', 
     'users',
     'days',
+    'prefill'
 ];
 
 
