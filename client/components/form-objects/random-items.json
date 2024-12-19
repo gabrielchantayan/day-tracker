@@ -1,5 +1,5 @@
 {
-	"breakfast": [
+	"Breakfast": [
 		"Eggs",
 		"Toast",
 		"Oatmeal",
@@ -24,7 +24,7 @@
 		"Chicken and Waffle",
 		"Waffle with Fresh Fruit"
 	],
-	"lunch": [
+	"Lunch": [
 		"Pad Thai",
 		"Chow Mein, Sweet and Sour Chicken",
 		"Pizza",
@@ -36,7 +36,7 @@
 		"Falafel",
 		"Chickpea Salad",
 		"Couscous",
-		"Egg Salad",
+		"Chicken Fingers",
 		"BLT",
 		"Fajitas",
 		"Hero Sub",
@@ -48,7 +48,7 @@
 		"Burger and Fries",
 		"Lemon Chicken"
 	],
-	"dinner": [
+	"Dinner": [
 		"Wings",
 		"Steak, Green beans",
 		"Souvlaki",
@@ -71,7 +71,7 @@
 		"Coq au Vin",
 		"Koobideh Kebab"
 	],
-	"snacks": [
+	"Snacks": [
 		"Pistachios",
 		"Almonds, Pistachios",
 		"Andes Candies, Peanuts",
@@ -92,7 +92,7 @@
 		"Guacamole and Chips",
 		"Pita Chips with Spinach and Artichoke Dip"
 	],
-	"books": [
+	"Books Read": [
 		"Anna Karenina",
 		"Crime and Punishment",
 		"The Idiot",
@@ -100,8 +100,10 @@
 		"The Master and Margarita",
 		"War and Peace",
 		"Fathers and Sons",
-		"The Overcoat",
-		"Dead Souls",
+		"The Old Man and the Sea",
+		"American Psycho",
+		"Memoirs of a Geisha",
+		"The Stranger",
 		"Eugene Onegin",
 		"Norwegian Wood",
 		"Kafka on the Shore",
@@ -119,7 +121,7 @@
 		"Blind Willow, Sleeping Woman",
 		"The Wind-Up Bird Chronicle"
 	],
-	"movies": [
+	"Movies Watched": [
 		"Taxi",
 		"Mimino",
 		"The Man From U.N.C.L.E.",
@@ -137,7 +139,7 @@
 		"The Color of Pomegranates",
 		"Night Is Short, Walk On Girl!"
 	],
-	"tv": [
+	"Shows Watched": [
 		"House",
 		"Dandadan",
 		"Community",
@@ -148,19 +150,58 @@
 		"Keep your hands off Eizouken!",
 		"Breaking Bad"
 	],
-    "languages": [
-        "French",
-        "Italian",
-        "Russian",
-        "German",
-        "Farsi",
-        "Armenian",
-        "Lebanese",
-        "Greek",
-        "Serbian",
-        "Turkish",
-        "Kazakh",
-        "Mandarin",
-        "Uzbek"
-    ]
-    }
+	"Games Played": [
+		"Counter-Strike 2",
+		"Factorio",
+		"VA-11 HALL-A",
+		"Minecraft",
+		"Half-Life 3",
+		"Fallout: New Vegas",
+		"Portal 2",
+		"Trove",
+		"Half-Life 2",
+		"Terraria",
+		"Team Fortress 2",
+		"Grand Theft Auto VI",
+		"Elden Ring",
+		"Baldur's Gate 3"
+	],
+	"Duolingo Language": [
+		"French",
+		"Italian",
+		"Russian",
+		"German",
+		"Greek",
+		"Turkish",
+		"Mandarin"
+	],
+
+	"Mango Language": [
+		"French",
+		"Italian",
+		"Russian",
+		"German",
+		"Farsi",
+		"Armenian",
+		"Lebanese",
+		"Greek",
+		"Serbian",
+		"Turkish",
+		"Kazakh",
+		"Mandarin",
+		"Uzbek"
+	],
+	"Productivity": ["Programming", "Cleaned the house", "Sewing", "Laundry", "Folding clothes", "Meal prep"],
+	"Excersise": [
+		"Running",
+		"Yoga",
+		"Swimming",
+		"Jogging",
+		"Crossfit",
+		"Weightlifting",
+		"Boxing",
+		"Pushups",
+		"Situps",
+		"Walked"
+	]
+}

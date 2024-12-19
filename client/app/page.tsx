@@ -4,16 +4,13 @@ import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import MultipleSelector from '@/components/ui/multiple-selector';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import random_items from './random-items.json';
 import TextInput from '@/components/form-objects/text-input';
 import NumberInput from '@/components/form-objects/number-input';
 
 import FormBuilder from '@/components/form-objects/form-builder';
 import { format_date, get_current_date } from './assets/js/utils';
 
-const get_random_item = (item: keyof typeof random_items) => {
-	return random_items[item][Math.floor(Math.random() * random_items[item].length)];
-};
+
 
 const structure = [
 	{
@@ -22,22 +19,22 @@ const structure = [
 			{
 				name: 'Breakfast',
 				type: 'multi-select',
-				placeholder: get_random_item('breakfast'),
+
 			},
 			{
 				name: 'Lunch',
 				type: 'multi-select',
-				placeholder: get_random_item('lunch'),
+
 			},
 			{
 				name: 'Dinner',
 				type: 'multi-select',
-				placeholder: get_random_item('dinner'),
+
 			},
 			{
 				name: 'Snacks',
 				type: 'multi-select',
-				placeholder: get_random_item('snacks'),
+
 			},
 		],
 	},
@@ -103,22 +100,22 @@ const structure = [
 			{
 				name: 'Books Read',
 				type: 'multi-select',
-				placeholder: get_random_item('books'),
+
 			},
 			{
 				name: 'Movies Watched',
 				type: 'multi-select',
-				placeholder: get_random_item('movies'),
+
 			},
 			{
 				name: 'Shows Watched',
 				type: 'multi-select',
-				placeholder: get_random_item('tv'),
+
 			},
 			{
 				name: 'Games Played',
 				type: 'multi-select',
-				placeholder: 'Factorio',
+
 			},
 		],
 	},
@@ -128,7 +125,7 @@ const structure = [
 			{
 				name: 'Duolingo Language',
 				type: 'text',
-				placeholder: get_random_item('languages'),
+
 			},
 			{
 				name: 'Duolingo Lessons',
@@ -137,7 +134,7 @@ const structure = [
 			{
 				name: 'Mango Language',
 				type: 'text',
-				placeholder: get_random_item('languages'),
+
 			},
 			{
 				name: 'Mango Lessons',

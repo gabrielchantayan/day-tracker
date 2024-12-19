@@ -11,6 +11,14 @@ import { Slider } from '../ui/slider';
 import SliderInput from './slider-input';
 import { Controller } from 'react-hook-form';
 import { useEffect } from 'react';
+import random_items from '@/components/form-objects/random-items.json';
+
+
+const get_random_item = (item: keyof typeof random_items) => {
+	console.log(`Getting random item: ${item}`);
+	return random_items?.[item]?.[Math.floor(Math.random() * random_items[item].length)] || null;
+};
+
 
 const FormBuilder = ({ structure, form }: any) => {
 	const formd = useForm();
@@ -67,7 +75,11 @@ const FormBuilder = ({ structure, form }: any) => {
 														<TextInput
 															id={values.item_field}
 															label={values.name}
-															placeholder={values.placeholder || values.name}
+															placeholder={
+																values.placeholder ||
+																get_random_item(values.name) ||
+																values.name
+															}
 															form={formd}
 															value={value}
 															on_change={onChange}
@@ -85,7 +97,11 @@ const FormBuilder = ({ structure, form }: any) => {
 														<MultipleSelectorInput
 															id={values.item_field}
 															label={values.name}
-															placeholder={values.placeholder}
+															placeholder={
+																values.placeholder ||
+																get_random_item(values.name) ||
+																values.name
+															}
 															options={values.options}
 															form={formd}
 															max_width={values['max-width'] || 'md'}
