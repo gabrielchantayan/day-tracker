@@ -182,6 +182,26 @@
 
 </details>
 
+<details>
+<summary><code>POST</code> <code><b>/api/data/get_prefill</b></code> <code>Gets prefill</code></summary>
+
+##### Parameters
+> | Name | Required | Data Type | Description |
+> |---|---|---|---|
+> | user | true | string | User | 
+> | token | true | string | Token | 
+> | date | true | string | Date | 
+
+
+##### Responses
+
+> | Name | Success | Description | Data | Message | 
+> |---|---|---|---|---|
+> | success | true | The data is successfully found | null | data.found | 
+> | not-found | false | The data is not found | null | data.not-found | 
+
+</details>
+
 
 
 ---

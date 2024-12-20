@@ -1,5 +1,5 @@
 const api_url = 'http://localhost:3080/api/';
-export const post = async (url, data) => {
+export const post = async (url: string[], data: any) => {
 
 	console.log(data);
     

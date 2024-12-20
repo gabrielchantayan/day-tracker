@@ -8,9 +8,11 @@ import TextInput from '@/components/form-objects/text-input';
 import NumberInput from '@/components/form-objects/number-input';
 
 import FormBuilder from '@/components/form-objects/form-builder';
-import { format_date, get_current_date } from './assets/js/utils';
+import { format_date, get_date } from './assets/js/utils';
+import { useState } from 'react';
 
-
+const date_selector_classes =
+	'underline italic underline-offset-2 hover:underline-offset-3 transition-all duration-100 hover:cursor-pointer hover:decoration-wavy';
 
 const structure = [
 	{
@@ -19,22 +21,18 @@ const structure = [
 			{
 				name: 'Breakfast',
 				type: 'multi-select',
-
 			},
 			{
 				name: 'Lunch',
 				type: 'multi-select',
-
 			},
 			{
 				name: 'Dinner',
 				type: 'multi-select',
-
 			},
 			{
 				name: 'Snacks',
 				type: 'multi-select',
-
 			},
 		],
 	},
@@ -100,22 +98,18 @@ const structure = [
 			{
 				name: 'Books Read',
 				type: 'multi-select',
-
 			},
 			{
 				name: 'Movies Watched',
 				type: 'multi-select',
-
 			},
 			{
 				name: 'Shows Watched',
 				type: 'multi-select',
-
 			},
 			{
 				name: 'Games Played',
 				type: 'multi-select',
-
 			},
 		],
 	},
@@ -125,7 +119,6 @@ const structure = [
 			{
 				name: 'Duolingo Language',
 				type: 'text',
-
 			},
 			{
 				name: 'Duolingo Lessons',
@@ -134,7 +127,6 @@ const structure = [
 			{
 				name: 'Mango Language',
 				type: 'text',
-
 			},
 			{
 				name: 'Mango Lessons',
@@ -174,6 +166,11 @@ const structure = [
 				type: 'slider',
 				'default-value': 10,
 			},
+			{
+				name: 'Stress',
+				type: 'slider',
+				'default-value': 5,
+			},
 		],
 	},
 	{
@@ -195,8 +192,26 @@ const structure = [
 	},
 ];
 
+const generate_default_values = (structure: any) => {
+	const default_values: any = {};
+	structure.forEach((category: any) => {
+		category.fields.forEach((field: any) => {
+			if (field.type === 'number') {
+				default_values[field.name] = 0;
+			} else if (field.type === 'text') {
+				default_values[field.name] = '';
+			} else if (field.type === 'multi-select') {
+				default_values[field.name] = [];
+			}
+		});
+	});
+	return default_values;
+};
+
 export default function Home() {
 	const form = useForm();
+
+	const [delta, set_delta] = useState(0);
 
 	const handle_submit = () => {
 		// Get all the values from the form
@@ -210,9 +225,19 @@ export default function Home() {
 				<div className='dark:text-white text-lg font-bold ml-2'>Day Tracker</div>
 			</header>
 			<main className='flex flex-col gap-6 px-10 py-5 sm:px-20 sm:py-10 w-full md:w-4/5'>
-				<h1 className='text-6xl font-light'>{format_date(get_current_date()).toLocaleLowerCase()}</h1>
+				<div className='flex flex-col gap-2 w-fit'>
+					<h1 className='text-6xl font-light'>{format_date(get_date(delta)).toLocaleLowerCase()}</h1>
+					<div className='flex flex-row justify-between'>
+						<div className={date_selector_classes} onClick={() => set_delta(delta - 1)}>
+							{format_date(get_date(-1 + delta)).toLocaleLowerCase()}
+						</div>
+						<div className={date_selector_classes} onClick={() => set_delta(delta + 1)}>
+							{format_date(get_date(1 + delta)).toLocaleLowerCase()}
+						</div>
+					</div>
+				</div>
 
-				<FormBuilder structure={structure} form={form} />
+				<FormBuilder structure={structure} form={form} date={get_date(delta)} />
 			</main>
 		</div>
 	);

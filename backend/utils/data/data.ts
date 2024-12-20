@@ -74,3 +74,10 @@ export const get_data = async ({ user, token, date }) => {
 	if (!db_day) return success_handler(false, null, 'error.data.not-found');
 	return success_handler(true, { data: db_day.data }, 'data.found');
 };
+
+
+export const get_prefill = async ({ user }) => {
+    const db_prefill = await find_one('prefill', { user: user });
+    if (!db_prefill) return success_handler(false, null, 'error.data.not-found');
+    return success_handler(true, { data: db_prefill.data }, 'data.found');
+};

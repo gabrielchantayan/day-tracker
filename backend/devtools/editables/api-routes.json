@@ -305,6 +305,45 @@
 				}
 			},
 			"responses": {}
+		},
+		"get_prefill" : {
+			"name": "Get prefill",
+			"description": "Gets prefill",
+			"type": "POST",
+			"primary-function-file": "utils/data/data.ts",
+			"primary-function": "get_prefill",
+			"parameters": {
+				"user": {
+					"type": "string",
+					"required": true,
+					"description": "User"
+				},
+				"token": {
+					"type": "string",
+					"required": true,
+					"description": "Token"
+				},
+				"date"	: {
+					"type": "string",
+					"required": true,
+					"description": "Date"
+				}
+			},
+			"responses": {
+				"success": {
+					"success": true,
+					"data": null,
+					"message": "data.found",
+					"description": "The data is successfully found"
+				},
+				"not-found": {
+					"success": false,
+					"data": null,
+					"message": "data.not-found",
+					"description": "The data is not found"
+				}	
+			}
 		}
+
 	}
 }

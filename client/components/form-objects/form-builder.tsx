@@ -6,7 +6,7 @@ import MultipleSelector from '../ui/multiple-selector';
 import MultipleSelectorInput from './multi-select-input';
 import { Button } from '../ui/button';
 import { post } from '@/app/assets/js/api';
-import { get_current_date } from '@/app/assets/js/utils';
+import { get_date } from '@/app/assets/js/utils';
 import { Slider } from '../ui/slider';
 import SliderInput from './slider-input';
 import { Controller } from 'react-hook-form';
@@ -15,29 +15,57 @@ import random_items from '@/components/form-objects/random-items.json';
 
 
 const get_random_item = (item: keyof typeof random_items) => {
-	console.log(`Getting random item: ${item}`);
 	return random_items?.[item]?.[Math.floor(Math.random() * random_items[item].length)] || null;
 };
 
 
-const FormBuilder = ({ structure, form }: any) => {
+const FormBuilder = ({ structure, form, date=get_date() }: any) => {
 	const formd = useForm();
+
+
+	const generate_default_values = (structure: any) => {
+		const default_values: any = {};
+		structure.forEach((category: any) => {
+			category.fields.forEach((field: any) => {
+
+				if (field.type === 'number') {
+					default_values[field.name] = 0;
+				} else if (field.type === 'text') {
+					default_values[field.name] = '';
+				} else if (field.type === 'multi-select') {
+					default_values[field.name] = [];
+				}
+
+			});
+		});
+		console.log(default_values)
+		return default_values;
+	}
+
+	const merge_with_priority = (high: any, low: any) => {
+		return { ...high, ...low };
+	};
 
 	const get_data_from_server = async (date: string) => {
 		const res = await post(['data', 'get_data'], { user: 'me@gabrielchantayan.com', date: date });
 
 		if (res.success) {
 
-			console.log('res success', res);
+			console.log('pm', merge_with_priority(generate_default_values(structure), res.data.data));
 
-			formd.reset(res.data.data);
+			formd.reset(merge_with_priority(generate_default_values(structure), res.data.data));
+			
+		}
+
+		else {
+			formd.reset(generate_default_values(structure));
 		}
 	};
 
 	const handle_submit = () => {
 		console.log(formd.getValues());
 
-		let current_date = get_current_date();
+		let current_date = date;
 		let current_user = 'me@gabrielchantayan.com';
 
 		post(['data', 'update_data'], {
@@ -48,14 +76,12 @@ const FormBuilder = ({ structure, form }: any) => {
 	};
 
 	useEffect(() => {
-		get_data_from_server(get_current_date());
-	}, []);
+		get_data_from_server(date);
+	}, [date]);
 
 	let fin = (
 		<Form {...formd}>
 			<form className='flex flex-col gap-5 sm:gap-3 flex-wrap'>
-
-		
 
 				{structure.map((category: any) => {
 					return (
@@ -123,7 +149,6 @@ const FormBuilder = ({ structure, form }: any) => {
 											)}
 										/>
 									);
-									
 								})}
 							</div>
 						</div>

@@ -14,4 +14,10 @@ router.post('/update_data', (req, res) => {
 router.post('/get_data', (req, res) => {
     return data.get_data(req, res);
 });
+
+// Get prefill
+// Gets prefill
+router.post('/get_prefill', (req, res) => {
+    return data.get_prefill(req, res);
+});
 export default router;
