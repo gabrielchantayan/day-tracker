@@ -279,7 +279,20 @@
 					"description": "Data"
 				}
 			},
-			"responses": {}
+			"responses": {
+				"success": {
+					"success": true,
+					"data": null,
+					"message": "data.updated",
+					"description": "The data is successfully updated"
+				},
+				"could-not-update": {
+					"success": false,
+					"data": null,
+					"message": "error.data.could-not-update",
+					"description": "The data could not be updated"
+				}
+			}
 		},
 		"get_data": {
 			"name": "Get data",
@@ -304,7 +317,20 @@
 					"description": "Date"
 				}
 			},
-			"responses": {}
+			"responses": {
+				"success": {
+					"success": true,
+					"data": "The data for the specified date",
+					"message": "data.found",
+					"description": "The data is successfully found"
+				},
+				"not-found": {
+					"success": false,
+					"data": null,
+					"message": "error.data.not-found",
+					"description": "The data is not found"
+				}
+			}
 		},
 		"get_prefill" : {
 			"name": "Get prefill",
@@ -332,18 +358,103 @@
 			"responses": {
 				"success": {
 					"success": true,
-					"data": null,
-					"message": "data.found",
+					"data": "Prefill data",
+					"message": "prefill.found",
 					"description": "The data is successfully found"
 				},
 				"not-found": {
 					"success": false,
 					"data": null,
-					"message": "data.not-found",
+					"message": "error.prefill.not-found",
 					"description": "The data is not found"
 				}	
 			}
 		}
 
+	},
+	"structure": {
+		"get_structure": {
+			"name": "Get structure",
+			"description": "Gets structure",
+			"type": "POST",
+			"primary-function-file": "utils/data/structure.ts",
+			"primary-function": "get_structure",
+			"parameters": {
+				"user": {
+					"type": "string",
+					"required": true,
+					"description": "User"
+				},
+				"token": {
+					"type": "string",
+					"required": true,
+					"description": "Token"
+				}
+			},
+			"responses": {
+				"success": {
+					"success": true,
+					"data": "Structure object",
+					"message": "structure.found",
+					"description": "The structure is successfully found"
+				},
+				"user-not-found": {
+					"success": false,
+					"data": null,
+					"message": "error.auth.user.not-found",
+					"description": "The specified user is not found in the database"
+				},
+				"structure-not-found": {
+					"success": false,
+					"data": null,
+					"message": "error.structure.not-found",
+					"description": "Could not find a structure for the specified user. The default structure is to be used."
+				}
+			}
+		},
+		"update_structure": {
+			"name": "Update structure",
+			"description": "Updates structure",
+			"type": "POST",
+			"primary-function-file": "utils/data/structure.ts",
+			"primary-function": "update_structure",
+			"parameters": {
+				"user": {
+					"type": "string",
+					"required": true,
+					"description": "User"
+				},
+				"token": {
+					"type": "string",
+					"required": true,
+					"description": "Token"
+				},
+				"structure": {
+					"type": "object",
+					"required": true,
+					"description": "Structure"
+				}
+			},
+			"responses": {
+				"success": {
+					"success": true,
+					"data": null,
+					"message": "structure.updated",
+					"description": "The structure is successfully updated"
+				},
+				"user-not-found": {
+					"success": false,
+					"data": null,
+					"message": "error.auth.user.not-found",
+					"description": "The specified user is not found in the database"
+				},
+				"could-not-update": {
+					"success": false,
+					"data": null,
+					"message": "error.structure.could-not-update",
+					"description": "Could not update the structure"
+				}
+			}
+		}
 	}
 }

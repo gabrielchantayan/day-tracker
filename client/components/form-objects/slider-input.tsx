@@ -8,7 +8,7 @@ const SliderInput = ({
 	id,
 	label,
 	form,
-	value = 50,
+	value = 0,
 	max_value = 100,
 	step = 5,
 	on_change
@@ -22,8 +22,11 @@ const SliderInput = ({
 	on_change?: any
 }) => {
 	return (
-		<div className={`flex flex-col w-28 md:w-60 gap-4`}>
-			<Label htmlFor={id}>{label}</Label>
+		<div className={`flex flex-col w-28 md:w-60 gap-1.5`}>
+			<div className='flex flex-row justify-between'>
+				<Label htmlFor={id}>{label}</Label>
+				<p className='text-stone-600 dark:text-stone-400 text-sm m-0'>{value/10}/{max_value/10}</p>
+			</div>
 			<div className='flex flex-row gap-2'>
 				<Slider id={id} value={[value]} max={max_value} step={step} onValueChange={on_change} />
 			</div>

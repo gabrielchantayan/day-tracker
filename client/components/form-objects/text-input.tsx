@@ -21,7 +21,7 @@ const TextInput = ({
 
 
 	return (
-		<div className='flex flex-col w-full max-w-sm  gap-1.5'>
+		<div className='flex flex-col max-w-sm gap-1.5'>
 			<Label htmlFor={id}>{label}</Label>
 			<Input type='text' id={id} placeholder={placeholder} value={value} onChange={on_change} />
 		</div>

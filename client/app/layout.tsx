@@ -15,6 +15,14 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+
+const rlMadena = localFont({
+	src: './fonts/RL-Madena.woff2',
+	variable: '--font-rl-madena',
+	weight: '100 900',
+});
+
+
 export const metadata: Metadata = {
   title: "Day Tracker",
   description: "Track your day",
@@ -27,8 +35,8 @@ export default function RootLayout({
 }>) {
   return (
 		<html lang='en'>
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-stone-100 dark:bg-stone-900`}>
-				<ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+			<body className={`${geistSans.variable} ${geistMono.variable} ${rlMadena.variable} antialiased bg-stone-100 dark:bg-stone-900`}>
+				<ThemeProvider attribute='class' defaultTheme='dark' enableSystem disableTransitionOnChange>
 					{children}
 				</ThemeProvider>
 			</body>
