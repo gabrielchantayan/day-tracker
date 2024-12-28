@@ -9,6 +9,7 @@
 	},
 	"scripts": {
 		"dev": "nodemon -r dotenv/config server.ts dotenv_config_path=./.env.dev -e ts",
+		"start": "ts-node server.ts dotenv_config_path=./.env ",
 		"gen-api": "ts-node ./devtools/tools/generate-api.ts",
 		"gen-loc": "ts-node ./devtools/tools/generate-locales.ts",
 		"gen-api-doc": "ts-node ./devtools/tools/generate-api-docs.ts",

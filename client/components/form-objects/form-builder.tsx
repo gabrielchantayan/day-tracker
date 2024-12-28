@@ -130,10 +130,10 @@ const FormBuilder = ({ structure, form, date = get_date() }: any) => {
 			<form className='flex flex-col gap-5 sm:gap-3 flex-wrap'>
 				{structure.map((category: any) => {
 					return (
-						<div key={category.name} className='flex flex-wrap flex-col gap-1 '>
+						<div key={category.name} className='flex flex-wrap flex-col  gap-1 '>
 							<p className='font-bold text-lg'>{category.name}</p>
 
-							<div className='flex flex-row flex-wrap gap-4 align-bottom'>
+							<div className='flex flex-col sm:flex-row flex-wrap gap-4 align-bottom'>
 								{category.fields.map((values: any, i: number) => {
 									if (values.type === 'multi-text-with-numbers') {
 										return (
@@ -148,7 +148,7 @@ const FormBuilder = ({ structure, form, date = get_date() }: any) => {
 											/>
 										);
 									} else if (values.type === 'break') {
-										return <div className='w-96'></div>;
+										return <div className='w-0 sm:w-96'></div>;
 									} else
 										return (
 											<Controller

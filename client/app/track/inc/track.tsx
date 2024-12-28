@@ -247,9 +247,9 @@ export default function Track({token, email} : any) {
 			{/* <header className='bg-stone-400 dark:bg-stone-700 p-2'>
 				<div className='dark:text-white text-lg font-bold ml-2'>Momentus</div>
 			</header> */}
-			<div className='flex flex-col gap-6 px-10 py-5 sm:px-20 sm:py-10 w-full md:w-4/5'>
-				<div className='flex flex-col gap-2 w-fit'>
-					<h1 className='text-6xl font-bold font-[family-name:var(--font-ss)]'>
+			<div className='flex flex-col gap-6 px-10 py-10 sm:px-20 sm:py-10 w-full md:w-4/5'>
+				<div className='flex flex-col gap-2 w-full sm:w-fit sm:items-start items-center'>
+					<h1 className='text-5xl sm:text-6xl font-bold font-[family-name:var(--font-ss)]'>
 						{format_date(get_date(delta)).toLocaleLowerCase()}
 					</h1>
 					<div className='w-full flex flex-row gap-2'>

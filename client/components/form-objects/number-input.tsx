@@ -19,7 +19,7 @@ const NumberInput = ({
 
 
 	return (
-		<div className={`flex flex-col w-28 md:w-40 gap-1.5`}>
+		<div className={`flex flex-col w-40 md:w-40 gap-1.5`}>
 			<Label htmlFor={id}>{label}</Label>
 			<div className='flex flex-row gap-1'>
 				<Button type='button' variant={'glass'} onClick={() => { console.log(id);on_change((value as number) - 1)}}>
