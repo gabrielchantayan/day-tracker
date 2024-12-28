@@ -34,6 +34,9 @@ export const update_data = async ({ user, date, data }) => {
 				// If the values are not an array, skip
 				if (!Array.isArray(values)) continue;
 
+				// If the first value is not an object, skip
+				if (typeof values[0] !== 'object') continue;
+
 				if (!flattened_prefill.hasOwnProperty(key)) flattened_prefill[key] = [];
 				flattened_prefill[key] = [...flattened_prefill[key], ...[...new Set(values as any)]];
 			}

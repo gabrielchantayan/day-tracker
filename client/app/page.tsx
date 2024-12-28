@@ -13,7 +13,7 @@ export default function Home() {
 					<p className='text-xl'>Track your life, one day at a time</p>
 				</div>
 				<div className='text-center gap-4 flex flex-col gap-8'>
-					<Button variant={'default'} size={'lg'} onClick={() => {
+					<Button variant={'glass'} size={'lg'} onClick={() => {
 							window.location.href = '/login';
 						}}>
 						Get Started

@@ -432,8 +432,9 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 				shouldFilter={commandProps?.shouldFilter !== undefined ? commandProps.shouldFilter : !onSearch} // When onSearch is provided, we don't want to filter the options. You can still override it.
 				filter={commandFilter()}>
 				<div
+					// '',
 					className={cn(
-						'min-h-10 rounded-md border border-input text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
+						'bg-white/20 shadow-md backdrop-blur-sm border border-black/30 hover:bg-white/[0.63] hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] active:shadow-md transition-all duration-150 ease-in-out min-h-10 rounded-md text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
 						{
 							'px-3 py-2': selected.length !== 0,
 							'cursor-text': !disabled && selected.length !== 0,
@@ -531,7 +532,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 				<div className='relative'>
 					{open && (
 						<CommandList
-							className='absolute top-1 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in'
+							className='absolute top-1 z-10 w-full rounded-md border bg-popover/80 border-black/30 backdrop-blur-sm text-popover-foreground shadow-md outline-none animate-in'
 							onMouseLeave={() => {
 								setOnScrollbar(false);
 							}}

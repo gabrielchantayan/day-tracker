@@ -15,7 +15,7 @@ var transporter = nodemailer.createTransport({
 
 const mail_footer = `
 
-Mail sent by Joob. Please do not reply to this email.
+Mail sent by . Please do not reply to this email.
 `
 
 

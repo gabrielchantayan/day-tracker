@@ -1,9 +1,14 @@
+'use client';
 
 import { Button } from '@/components/ui/button';
-
-import { cookies } from 'next/headers';
-import Track from './inc/track';
-import { get_user, is_logged_in } from '../assets/js/auth';
+import { useForm } from 'react-hook-form';
+import { CalendarIcon } from '@radix-ui/react-icons';
+import FormBuilder from '@/components/form-objects/form-builder';
+import { format_date, get_date } from '../../assets/js/utils';
+import { useState } from 'react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Calendar } from '@/components/ui/calendar';
+import { get_user } from '@/app/assets/js/auth';
 
 const date_selector_classes =
 	'underline italic underline-offset-2 hover:underline-offset-3 transition-all duration-100 hover:cursor-pointer hover:decoration-wavy';
@@ -217,7 +222,24 @@ const generate_default_values = (structure: any) => {
 	return default_values;
 };
 
-export default function Home() {
+export default function Track({token, email} : any) {
+	const form = useForm();
+
+	const [delta, set_delta] = useState(0);
+
+	const handle_submit = () => {
+		// Get all the values from the form
+		const values = form.getValues();
+		console.log(values);
+	};
+
+	const change_date = (d: any) => {
+		let current_date = new Date(get_date());
+		let new_date = new Date(d);
+		let triangle = (new_date.getTime() - current_date.getTime()) / (1000 * 3600 * 24);
+		set_delta(triangle);
+	};
+
 
 
 	return (
@@ -225,9 +247,35 @@ export default function Home() {
 			{/* <header className='bg-stone-400 dark:bg-stone-700 p-2'>
 				<div className='dark:text-white text-lg font-bold ml-2'>Momentus</div>
 			</header> */}
-			<main className=''>
-				<Track />
-			</main>
+			<div className='flex flex-col gap-6 px-10 py-5 sm:px-20 sm:py-10 w-full md:w-4/5'>
+				<div className='flex flex-col gap-2 w-fit'>
+					<h1 className='text-6xl font-bold font-[family-name:var(--font-ss)]'>
+						{format_date(get_date(delta)).toLocaleLowerCase()}
+					</h1>
+					<div className='w-full flex flex-row gap-2'>
+						<Popover>
+							<PopoverTrigger>
+								<p className='cursor-pointer text-6xl'>
+									<CalendarIcon className='w-5 h-5 hover:scale-110 transition-all duration-100' />
+								</p>
+							</PopoverTrigger>
+							<PopoverContent className='ml-10'>
+								<Calendar mode='single' onSelect={(d: any) => change_date(d)} />
+							</PopoverContent>
+						</Popover>
+						<div className='flex flex-row justify-between w-full'>
+							<div className={date_selector_classes} onClick={() => set_delta(delta - 1)}>
+								{format_date(get_date(-1 + delta)).toLocaleLowerCase()}
+							</div>
+							<div className={date_selector_classes} onClick={() => set_delta(delta + 1)}>
+								{format_date(get_date(1 + delta)).toLocaleLowerCase()}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<FormBuilder structure={structure} form={form} date={get_date(delta)} />
+			</div>
 		</div>
 	);
 }

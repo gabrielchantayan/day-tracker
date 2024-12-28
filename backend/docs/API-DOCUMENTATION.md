@@ -4,6 +4,52 @@
 
 ---
 
+#### ACCOUNT
+
+<details>
+<summary><code>POST</code> <code><b>/api/account/register</b></code> <code>Registers a new account</code></summary>
+
+##### Parameters
+> | Name | Required | Data Type | Description |
+> |---|---|---|---|
+> | email | true | string | Email address | 
+> | form_info | true | object | Form info | 
+
+
+##### Responses
+
+> | Name | Success | Description | Data | Message | 
+> |---|---|---|---|---|
+> | success | true | The account is successfully registered | {"token":"string","email":"string (Account's email address)","name":"string (First + Last name)"} | account.registered | 
+> | account-already-exists | false | The account already exists | null | error.account.already-exists | 
+
+</details>
+
+<details>
+<summary><code>POST</code> <code><b>/api/account/login</b></code> <code>Logs in an account</code></summary>
+
+##### Parameters
+> | Name | Required | Data Type | Description |
+> |---|---|---|---|
+> | email | true | string | Email address | 
+> | otp | true | string | One-time password | 
+> | reset_token | false | boolean | Reset the user's token upon login?<br />Default: FALSE | 
+
+
+##### Responses
+
+> | Name | Success | Description | Data | Message | 
+> |---|---|---|---|---|
+> | success | true | The account is successfully logged in | {"token":"string","email":"string (Account's email address)","name":"string (First + Last name)"} | account.logged-in | 
+> | account-not-found | false | The specified account is not found in the database | null | error.account.not-found | 
+> | account-disabled | false | The specified account is disabled | null | error.account.disabled | 
+
+</details>
+
+
+
+---
+
 #### AUTH
 
 <details>
@@ -161,6 +207,8 @@
 
 > | Name | Success | Description | Data | Message | 
 > |---|---|---|---|---|
+> | success | true | The data is successfully updated | null | data.updated | 
+> | could-not-update | false | The data could not be updated | null | error.data.could-not-update | 
 
 </details>
 
@@ -179,6 +227,8 @@
 
 > | Name | Success | Description | Data | Message | 
 > |---|---|---|---|---|
+> | success | true | The data is successfully found | "The data for the specified date" | data.found | 
+> | not-found | false | The data is not found | null | error.data.not-found | 
 
 </details>
 
@@ -197,8 +247,55 @@
 
 > | Name | Success | Description | Data | Message | 
 > |---|---|---|---|---|
-> | success | true | The data is successfully found | null | data.found | 
-> | not-found | false | The data is not found | null | data.not-found | 
+> | success | true | The data is successfully found | "Prefill data" | prefill.found | 
+> | not-found | false | The data is not found | null | error.prefill.not-found | 
+
+</details>
+
+
+
+---
+
+#### STRUCTURE
+
+<details>
+<summary><code>POST</code> <code><b>/api/structure/get_structure</b></code> <code>Gets structure</code></summary>
+
+##### Parameters
+> | Name | Required | Data Type | Description |
+> |---|---|---|---|
+> | user | true | string | User | 
+> | token | true | string | Token | 
+
+
+##### Responses
+
+> | Name | Success | Description | Data | Message | 
+> |---|---|---|---|---|
+> | success | true | The structure is successfully found | "Structure object" | structure.found | 
+> | user-not-found | false | The specified user is not found in the database | null | error.auth.user.not-found | 
+> | structure-not-found | false | Could not find a structure for the specified user. The default structure is to be used. | null | error.structure.not-found | 
+
+</details>
+
+<details>
+<summary><code>POST</code> <code><b>/api/structure/update_structure</b></code> <code>Updates structure</code></summary>
+
+##### Parameters
+> | Name | Required | Data Type | Description |
+> |---|---|---|---|
+> | user | true | string | User | 
+> | token | true | string | Token | 
+> | structure | true | object | Structure | 
+
+
+##### Responses
+
+> | Name | Success | Description | Data | Message | 
+> |---|---|---|---|---|
+> | success | true | The structure is successfully updated | null | structure.updated | 
+> | user-not-found | false | The specified user is not found in the database | null | error.auth.user.not-found | 
+> | could-not-update | false | Could not update the structure | null | error.structure.could-not-update | 
 
 </details>
 

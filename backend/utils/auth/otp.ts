@@ -164,7 +164,9 @@ const verify_otp = async ({ email, code }: { email: string, code: string }) => {
  * @returns {string} The formatted OTP code.
  */
 const format_otp = (otp: string) => {
-    return otp.slice(0, 3) + "-" + otp.slice(3, 6);
+        return otp.slice(0, 6);
+
+    // return otp.slice(0, 3) + "-" + otp.slice(3, 6);
 }
 
 

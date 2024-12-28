@@ -18,7 +18,7 @@ const geistMono = localFont({
 
 const rlMadena = localFont({
 	src: './fonts/RL-Madena.woff2',
-	variable: '--font-rl-madena',
+	variable: '--font-ss',
 	weight: '100 900',
 });
 
@@ -35,8 +35,12 @@ export default function RootLayout({
 }>) {
   return (
 		<html lang='en'>
-			<body className={`${geistSans.variable} ${geistMono.variable} ${rlMadena.variable} antialiased bg-stone-100 dark:bg-stone-900`}>
-				<ThemeProvider attribute='class' defaultTheme='dark' enableSystem disableTransitionOnChange>
+			<body
+				className={`${geistSans.variable} ${geistMono.variable} ${rlMadena.variable} antialiased bg-gradient-to-r from-[#E3FDF5] to-[#FFE6FA]`}>
+				<ThemeProvider attribute='class' defaultTheme='light' enableSystem disableTransitionOnChange>
+					<div className='bg-gradient-to-r from-[#ddd6f3] to-[#faaca8] fixed inset-0 -z-10 w-screen h-screen h-full animate-breathing'>
+					</div>
+
 					{children}
 				</ThemeProvider>
 			</body>

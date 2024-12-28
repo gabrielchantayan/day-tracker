@@ -40,7 +40,7 @@ const [content, set_content] = useState<React.ReactNode[]>([]);
 				return item;
 			})}
 			<div className='flex flex-row gap-2'>
-				<Button type='button' variant={'secondary'} onClick={() => add()}>
+				<Button type='button' variant={'glass'} onClick={() => add()}>
 					Add
 				</Button>
 			</div>

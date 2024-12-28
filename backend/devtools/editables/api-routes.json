@@ -268,7 +268,7 @@
 					"required": true,
 					"description": "User"
 				},
-				"date"	: {
+				"date": {
 					"type": "string",
 					"required": true,
 					"description": "Date"
@@ -311,7 +311,7 @@
 					"required": true,
 					"description": "Token"
 				},
-				"date"	: {
+				"date": {
 					"type": "string",
 					"required": true,
 					"description": "Date"
@@ -332,7 +332,7 @@
 				}
 			}
 		},
-		"get_prefill" : {
+		"get_prefill": {
 			"name": "Get prefill",
 			"description": "Gets prefill",
 			"type": "POST",
@@ -349,7 +349,7 @@
 					"required": true,
 					"description": "Token"
 				},
-				"date"	: {
+				"date": {
 					"type": "string",
 					"required": true,
 					"description": "Date"
@@ -367,10 +367,9 @@
 					"data": null,
 					"message": "error.prefill.not-found",
 					"description": "The data is not found"
-				}	
+				}
 			}
 		}
-
 	},
 	"structure": {
 		"get_structure": {
@@ -453,6 +452,93 @@
 					"data": null,
 					"message": "error.structure.could-not-update",
 					"description": "Could not update the structure"
+				}
+			}
+		}
+	},
+	"account": {
+		"register": {
+			"name": "Register",
+			"description": "Registers a new account",
+			"type": "POST",
+			"primary-function-file": "utils/account/register.ts",
+			"primary-function": "register",
+			"parameters": {
+				"email": {
+					"type": "string",
+					"required": true,
+					"description": "Email address"
+				},
+				"form_info": {
+					"type": "object",
+					"required": true,
+					"description": "Form info"
+				}
+			},
+			"responses": {
+				"success": {
+					"success": true,
+					"data": {
+						"token": "string",
+						"email": "string (Account's email address)",
+						"name": "string (First + Last name)"
+					},
+					"message": "account.registered",
+					"description": "The account is successfully registered"
+				},
+				"account-already-exists": {
+					"success": false,
+					"data": null,
+					"message": "error.account.already-exists",
+					"description": "The account already exists"
+				}
+			}
+		},
+		"login": {
+			"name": "Login",
+			"description": "Logs in an account",
+			"type": "POST",
+			"primary-function-file": "utils/account/authenticate.ts",
+			"primary-function": "login",
+			"parameters": {
+				"email": {
+					"type": "string",
+					"required": true,
+					"description": "Email address"
+				},
+				"otp": {
+					"type": "string",
+					"required": true,
+					"description": "One-time password"
+				},
+				"reset_token": {
+					"type": "boolean",
+					"required": false,
+					"description": "Reset the user's token upon login?<br />Default: FALSE"
+				}
+			},
+			"responses": {
+				"success": {
+					"success": true,
+					"data": {
+						"token": "string",
+						"email": "string (Account's email address)",
+						"name": "string (First + Last name)"
+					},
+					"message": "account.logged-in",
+					"description": "The account is successfully logged in"
+				},
+				"account-not-found": {
+					"success": false,
+					"data": null,
+					"message": "error.account.not-found",
+					"description": "The specified account is not found in the database"
+				},
+				"account-disabled": {
+					"success": false,
+					"data": null,
+					"message": "error.account.disabled",
+					"description": "The specified account is disabled"
 				}
 			}
 		}

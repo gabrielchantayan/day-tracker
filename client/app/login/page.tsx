@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@/components/ui/input-otp';
 import { useState } from 'react';
+import { post } from '../assets/js/api';
+import { login } from '../assets/js/auth';
 
 export default function Home() {
 
@@ -12,7 +14,33 @@ export default function Home() {
 	const [otp, set_otp] = useState('');
 	const [error, set_error] = useState('');
 
-	const send_otp = () => {
+
+
+	const resend_otp = async () => {
+		const res = await post(['auth', 'resend-otp'], {
+			email: email,
+		});
+	};
+
+	const verify_otp = async () => {
+		const res = await post(['account', 'login'], {
+			email: email,
+			otp: otp,
+		});
+
+		console.log(res);
+
+		if (res.success) {
+			await login(res.data.email, res.data.token, res.data.name);
+			window.location.href = '/track';
+		} else {
+			set_otp_sent(res.message);
+		}
+	};
+
+	
+
+	const send_otp = async () => {
 
 		if (email === '') {
 			set_error('Please enter your email');
@@ -23,9 +51,13 @@ export default function Home() {
 			return;
 		}
 
-		
-		set_error('');
-		set_otp_sent(true);
+		const res = await post(['auth', 'generate-otp'], {
+			email: email,
+		});
+
+		if (res.success) {
+			set_otp_sent(true);
+		}
 	};
 
 	return (
@@ -37,19 +69,26 @@ export default function Home() {
 				<div className=' gap-4 flex flex-col gap-4 items-center justify-center'>
 					{otp_sent ? (
 						<div className=' gap-4 flex flex-col gap-4'>
-							<InputOTP maxLength={6} value={otp} onChange={set_otp}>
-								<InputOTPGroup>
-									<InputOTPSlot index={0} />
-									<InputOTPSlot index={1} />
-									<InputOTPSlot index={2} />
-								</InputOTPGroup>
-								<InputOTPSeparator />
-								<InputOTPGroup>
-									<InputOTPSlot index={3} />
-									<InputOTPSlot index={4} />
-									<InputOTPSlot index={5} />
-								</InputOTPGroup>
-							</InputOTP>
+							<div className=' gap-4 flex flex-col gap-4'>
+								<InputOTP maxLength={6} value={otp} onChange={set_otp}>
+									<InputOTPGroup>
+										<InputOTPSlot index={0} />
+										<InputOTPSlot index={1} />
+										<InputOTPSlot index={2} />
+									</InputOTPGroup>
+									<InputOTPSeparator />
+									<InputOTPGroup>
+										<InputOTPSlot index={3} />
+										<InputOTPSlot index={4} />
+										<InputOTPSlot index={5} />
+									</InputOTPGroup>
+								</InputOTP>
+							</div>
+
+							<div className=' gap-4 flex flex-row justify-between'>
+								<Button variant="glass_secondary" onClick={verify_otp}>Login</Button>
+							<Button variant="glass_secondary" onClick={resend_otp}>Resend OTP</Button>
+							</div>
 						</div>
 					) : (
 						<div className='gap-4 flex flex-col gap-4 w-96'>
