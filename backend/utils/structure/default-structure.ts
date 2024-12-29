@@ -1,14 +1,4 @@
-
-import { Button } from '@/components/ui/button';
-
-import { cookies } from 'next/headers';
-import Track from './inc/track';
-import { get_user, is_logged_in } from '../assets/js/auth';
-
-const date_selector_classes =
-	'underline italic underline-offset-2 hover:underline-offset-3 transition-all duration-100 hover:cursor-pointer hover:decoration-wavy';
-
-const structure = [
+const default_structure = [
 	{
 		name: 'Meals',
 		fields: [
@@ -63,9 +53,18 @@ const structure = [
 						label: 'Commodity',
 						value: 'Commodity',
 					},
-					{ label: 'Outlook', value: 'Outlook' },
-					{ label: "Aldi's", value: 'Aldis' },
-					{ label: 'Walmart', value: 'Walmart' },
+					{
+						label: 'Outlook',
+						value: 'Outlook',
+					},
+					{
+						label: "Aldi's",
+						value: 'Aldis',
+					},
+					{
+						label: 'Walmart',
+						value: 'Walmart',
+					},
 					{
 						label: "Austin's Coffee",
 						value: 'Austins Coffee',
@@ -168,66 +167,23 @@ const structure = [
 			},
 		],
 	},
-	{
-		name: ';)',
-		fields: [
-			{
-				name: 'Current Woman',
-				type: 'multi-select',
-			},
-			{
-				name: 'Ժաժ տվի',
-				type: 'number',
-			},
-			{
-				name: 'սեքս',
-				type: 'number',
-			},
-		],
-	},
 	// {
-	// 	name: 'Other',
+	// 	name: ';)',
 	// 	fields: [
 	// 		{
-	// 			name: 'Duolingo Language',
-	// 			type: 'multi-text-with-numbers',
-	// 			numbers_content : [
-	// 				{
-	// 					name: 'Duolingo Lessons',
-	// 				}
-	// 			]
+	// 			name: 'Current Woman',
+	// 			type: 'multi-select',
+	// 		},
+	// 		{
+	// 			name: 'Ժաժ տվի',
+	// 			type: 'number',
+	// 		},
+	// 		{
+	// 			name: 'սեքս',
+	// 			type: 'number',
 	// 		},
 	// 	],
 	// },
 ];
 
-const generate_default_values = (structure: any) => {
-	const default_values: any = {};
-	structure.forEach((category: any) => {
-		category.fields.forEach((field: any) => {
-			if (field.type === 'number') {
-				default_values[field.name] = 0;
-			} else if (field.type === 'text') {
-				default_values[field.name] = '';
-			} else if (field.type === 'multi-select') {
-				default_values[field.name] = [];
-			}
-		});
-	});
-	return default_values;
-};
-
-export default function Home() {
-
-
-	return (
-		<div className='font-[family-name:var(--font-geist-sans)]'>
-			{/* <header className='bg-stone-400 dark:bg-stone-700 p-2'>
-				<div className='dark:text-white text-lg font-bold ml-2'>Momentus</div>
-			</header> */}
-			<main className=''>
-				<Track token={cookies().get('user-token')?.value} email={cookies().get('user-email')?.value} />
-			</main>
-		</div>
-	);
-}
+export default default_structure;

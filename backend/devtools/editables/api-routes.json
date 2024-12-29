@@ -376,7 +376,7 @@
 			"name": "Get structure",
 			"description": "Gets structure",
 			"type": "POST",
-			"primary-function-file": "utils/data/structure.ts",
+			"primary-function-file": "utils/structure/get-structure.ts",
 			"primary-function": "get_structure",
 			"parameters": {
 				"user": {
@@ -415,7 +415,7 @@
 			"name": "Update structure",
 			"description": "Updates structure",
 			"type": "POST",
-			"primary-function-file": "utils/data/structure.ts",
+			"primary-function-file": "utils/structure/update-structure.ts",
 			"primary-function": "update_structure",
 			"parameters": {
 				"user": {

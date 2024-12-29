@@ -1,5 +1,5 @@
 import async_wrapper from '../../middleware/async-wrapper';
-import { update_structure as main_function } from '../../utils/data/structure';
+import { update_structure as main_function } from '../../utils/structure/update-structure';
 
 // Update structure
 // Updates structure

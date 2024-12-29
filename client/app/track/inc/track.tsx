@@ -5,10 +5,12 @@ import { useForm } from 'react-hook-form';
 import { CalendarIcon } from '@radix-ui/react-icons';
 import FormBuilder from '@/components/form-objects/form-builder';
 import { format_date, get_date } from '../../assets/js/utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
 import { get_user } from '@/app/assets/js/auth';
+import { post } from '@/app/assets/js/api';
+import { get } from 'http';
 
 const date_selector_classes =
 	'underline italic underline-offset-2 hover:underline-offset-3 transition-all duration-100 hover:cursor-pointer hover:decoration-wavy';
@@ -174,10 +176,10 @@ const structure = [
 		],
 	},
 	{
-		name: ';)',
+		name: 'Կյանքս',
 		fields: [
 			{
-				name: 'Current Woman',
+				name: 'Կին',
 				type: 'multi-select',
 			},
 			{
@@ -227,6 +229,11 @@ export default function Track({token, email} : any) {
 
 	const [delta, set_delta] = useState(0);
 
+	const [struc, set_struc] = useState({
+		loading: true,
+		structure: [],
+	});
+
 	const handle_submit = () => {
 		// Get all the values from the form
 		const values = form.getValues();
@@ -240,6 +247,30 @@ export default function Track({token, email} : any) {
 		set_delta(triangle);
 	};
 
+	const get_structure = async () => {
+
+		console.log(email, token);
+
+		const res = await post(['structure', 'get_structure'], {
+			user: email,
+			token: token
+		});
+
+		if (res.success) {
+
+			console.log(res)
+
+			set_struc({
+				loading: false,
+				structure: res.data.structure,
+			});
+		}
+	};
+
+	
+	useEffect(() => {
+		get_structure();
+	}, []);
 
 
 	return (
@@ -274,7 +305,11 @@ export default function Track({token, email} : any) {
 					</div>
 				</div>
 
-				<FormBuilder structure={structure} form={form} date={get_date(delta)} />
+				{!struc.loading ? (
+					<FormBuilder structure={struc.structure} form={form} date={get_date(delta)} />
+				) : (
+					<div>Loading</div>
+				)}
 			</div>
 		</div>
 	);

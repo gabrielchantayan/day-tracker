@@ -1,5 +1,5 @@
 import async_wrapper from '../../middleware/async-wrapper';
-import { get_structure as main_function } from '../../utils/data/structure';
+import { get_structure as main_function } from '../../utils/structure/get-structure';
 
 // Get structure
 // Gets structure
