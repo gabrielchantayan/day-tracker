@@ -11,6 +11,29 @@ const get_structure = async ({ user, token }) => {
 
     const structure = await find_one('structures', { user: user });
 
+
+        const prefills = await find_one('prefill', { user: user });
+
+    if (!!prefills) {
+        for (const [category, fields] of Object.entries(structure.structure)) {
+            for (const [field, value] of Object.entries(fields['fields'] as { any })) {
+
+                
+                if (value.type === 'multi-select') {
+
+
+                    try {
+                        structure.structure[category]['fields'][field].options = prefills.data[value['name']];
+                    }
+                    catch (e) {
+                        log(`Error updating structure:\n${JSON.stringify(e, null, 2)}`, 3, 'STRUCTURES');
+                    }
+
+				}
+			}
+		}
+    }
+
     if (!structure) {
         log_db(`Structure not found for user ${user}`);
         return success_handler(true, {structure: default_structure});
@@ -20,3 +43,4 @@ const get_structure = async ({ user, token }) => {
 };
 
 export  {get_structure}
+

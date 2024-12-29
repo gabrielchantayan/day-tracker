@@ -22,7 +22,7 @@ const NumberInput = ({
 		<div className={`flex flex-col w-40 md:w-40 gap-1.5`}>
 			<Label htmlFor={id}>{label}</Label>
 			<div className='flex flex-row gap-1'>
-				<Button type='button' variant={'glass'} onClick={() => { console.log(id);on_change((value as number) - 1)}}>
+				<Button type='button' variant={'glass'} onClick={() => { on_change((value as number) - 1)}}>
 					-
 				</Button>
 				<Input type='number' id={id} placeholder={placeholder} value={value} onChange={on_change} />

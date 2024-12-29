@@ -226,7 +226,6 @@ const FormBuilder = ({ structure, form, date = get_date() }: any) => {
 				}
 			});
 		});
-		console.log(default_values);
 		return default_values;
 	};
 

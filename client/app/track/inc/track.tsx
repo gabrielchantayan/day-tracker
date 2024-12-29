@@ -237,7 +237,6 @@ export default function Track({token, email} : any) {
 	const handle_submit = () => {
 		// Get all the values from the form
 		const values = form.getValues();
-		console.log(values);
 	};
 
 	const change_date = (d: any) => {
@@ -249,7 +248,6 @@ export default function Track({token, email} : any) {
 
 	const get_structure = async () => {
 
-		console.log(email, token);
 
 		const res = await post(['structure', 'get_structure'], {
 			user: email,
@@ -258,7 +256,6 @@ export default function Track({token, email} : any) {
 
 		if (res.success) {
 
-			console.log(res)
 
 			set_struc({
 				loading: false,

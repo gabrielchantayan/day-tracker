@@ -5,7 +5,7 @@ import { log } from '../misc/logger';
 import default_structure from '../structure/default-structure';
 
 const update_structure = async ({ user, token, structure }) => {
-	console.log('validating token');
+    log(`Updating structure for user ${user}`, 4, 'STRUCTURES');
 
 	const validate_token_res = await validate_token({ user: user, token: token });
 	if (!validate_token_res.success) console.log('token validation failed');

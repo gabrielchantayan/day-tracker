@@ -1,6 +1,7 @@
 import { find_one, insert, update } from "../db/db"
 import { convert_time_string_to_ms } from "../misc/utils";
 import success_handler from "../misc/success-handler";
+import { log } from "../misc/logger";
 
 /**
  * Check if a user has a cooldown of a certain type.
@@ -56,14 +57,14 @@ const user_set_cooldown = async (user, cooldown_type, cooldown) => {
 
 
 const get_user_info = async (user) => {
-    console.log(`get_user_info: Getting user info for ${user}`);
+    log(`Getting user info for ${user}`, 4, 'ACCOUNT');
     // Get the user's info
     const db_user = await find_one('users', { email: user });
     if (!db_user) {
-        console.log(`get_user_info: User not found: ${user}`);
+        log(`User not found: ${user}`, 4, 'ACCOUNT');
         return success_handler(false, null, 'user.not-found');
     }
-    console.log(`get_user_info: Found user info for ${user}`);
+    log(`Found user info for ${user}`, 4, 'ACCOUNT');
     return success_handler(true, db_user, 'user.info');
 }
 

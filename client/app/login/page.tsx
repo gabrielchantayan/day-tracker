@@ -28,8 +28,6 @@ export default function Home() {
 			otp: otp,
 		});
 
-		console.log(res);
-
 		if (res.success) {
 			await login(res.data.email, res.data.token, res.data.name);
 			window.location.href = '/track';
