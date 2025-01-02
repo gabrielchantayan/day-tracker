@@ -15,6 +15,7 @@ import random_items from '@/components/form-objects/random-items.json';
 import TextWithNumbersInput from './text-with-numbers-input';
 import MultiTextWithNumbersInput from './multi-text-with-numbers-input';
 import { get_user } from '@/app/assets/js/auth';
+import TextareaInput from './textarea-input';
 
 const get_random_item = (item: keyof typeof random_items) => {
 	return random_items?.[item]?.[Math.floor(Math.random() * random_items[item].length)] || null;
@@ -299,12 +300,6 @@ const FormBuilder = ({ structure, form, date = get_date() }: any) => {
 			data: { ...formd.getValues() },
 		});
 
-		await post(['structure', 'update_structure'], {
-			user: current_user,
-			token: token,
-		structure: structusre
-	
-	})
 	}
 	useEffect(() => {
 		get_data_from_server(date);
@@ -361,6 +356,15 @@ const FormBuilder = ({ structure, form, date = get_date() }: any) => {
 																label={values.name}
 																placeholder={values.placeholder || 0}
 																// form={formd}
+																value={value}
+																on_change={onChange}
+															/>
+														) : values.type === 'textarea' ? (
+															<TextareaInput
+																id={values.item_field}
+																label={values.name}
+																placeholder={values.placeholder || "Write something here."}
+																form={formd}
 																value={value}
 																on_change={onChange}
 															/>

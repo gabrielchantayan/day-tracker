@@ -10,9 +10,10 @@ const cookie_store = cookies();
  * @param name The user's name.
  */
 const login = (email: string, token: string, name: string) => {
-	cookie_store.set('user-email', email);
-	cookie_store.set('user-token', token);
-	cookie_store.set('user-name', name);
+	cookie_store.set('user-email', email, {secure: false}
+);
+	cookie_store.set('user-token', token, {secure: false});
+	cookie_store.set('user-name', name, {secure: false});
 };
 
 /**
@@ -29,15 +30,14 @@ const logout = () => {
  * Returns the user's email, token, and name from local storage.
  * @returns An object containing the user's email, token, and name.
  */
-const get_user = (): {
-	email: string | null;
-	token: string | null;
-	name: string | null;
-} => {
+const get_user = async () => {
+
+
+	
 	return {
-		email: cookie_store.get('user-email')?.value as any,
-		token: cookie_store.get('user-token')?.value as any,
-		name: cookie_store.get('user-name')?.value as any,
+		email: await cookie_store.get('user-email')?.value as any,
+		token: await cookie_store.get('user-token')?.value as any,
+		name: await cookie_store.get('user-name')?.value as any,
 	};
 };
 
