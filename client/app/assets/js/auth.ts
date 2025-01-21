@@ -35,9 +35,9 @@ const get_user = async () => {
 
 	
 	return {
-		email: await cookie_store.get('user-email')?.value as any,
-		token: await cookie_store.get('user-token')?.value as any,
-		name: await cookie_store.get('user-name')?.value as any,
+		email: (await cookie_store.get('user-email')?.value) as any,
+		token: (await cookie_store.get('user-token')?.value) as any,
+		name: (await cookie_store.get('user-name')?.value) as any,
 	};
 };
 
