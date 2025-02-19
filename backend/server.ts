@@ -24,7 +24,7 @@ const main = async () => {
 		return;
 	}
 
-	const server_port = 3080;
+	const server_port = 2221;
 	const app = express();
 
 	// Enable CORS for all routes.

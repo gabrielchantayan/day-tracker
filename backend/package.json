@@ -9,7 +9,7 @@
 	},
 	"scripts": {
 		"dev": "nodemon -r dotenv/config server.ts dotenv_config_path=./.env.dev -e ts",
-		"start": "ts-node server.ts dotenv_config_path=./.env",
+		"start": "ts-node server.ts dotenv_config_path=./.env -p 2221",
 		"gen-api": "ts-node ./devtools/tools/generate-api.ts",
 		"gen-loc": "ts-node ./devtools/tools/generate-locales.ts",
 		"gen-api-doc": "ts-node ./devtools/tools/generate-api-docs.ts",
@@ -24,6 +24,8 @@
 		"bcrypt": "^5.1.1",
 		"concurrently": "^7.4.0",
 		"cors": "^2.8.5",
+		"date-fns": "^4.1.0",
+		"dayjs": "^1.11.13",
 		"dotenv": "^16.0.2",
 		"express": "^4.21.0",
 		"mongodb": "^6.9.0",

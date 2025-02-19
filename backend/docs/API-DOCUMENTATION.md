@@ -252,6 +252,27 @@
 
 </details>
 
+<details>
+<summary><code>POST</code> <code><b>/api/data/download_csv</b></code> <code>Downloads a CSV file containing the user's data for the specified date range</code></summary>
+
+##### Parameters
+> | Name | Required | Data Type | Description |
+> |---|---|---|---|
+> | user | true | string | User | 
+> | token | true | string | Token | 
+> | date_range | true | object { from: date, to: date } | Date | 
+
+
+##### Responses
+
+> | Name | Success | Description | Data | Message | 
+> |---|---|---|---|---|
+> | success | true | Pulled the data successfully | "A CSV file containing the user's data for the specified date range" | data.found | 
+> | user-not-found | false | The specified user is not found in the database | null | error.auth.user.not-found | 
+> | token-invalid | false | The given token does not match the user's token in the database | null | error.auth.token.invalid | 
+
+</details>
+
 
 
 ---

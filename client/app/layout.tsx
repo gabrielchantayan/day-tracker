@@ -36,10 +36,11 @@ export default function RootLayout({
   return (
 		<html lang='en'>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} ${rlMadena.variable} antialiased bg-gradient-to-r from-[#E3FDF5] to-[#FFE6FA]`}>
+				// className={`${geistSans.variable} ${geistMono.variable} ${rlMadena.variable} antialiased bg-gradient-to-r from-[#E3FDF5] to-[#FFE6FA]`}>
+				className={`${geistSans.variable} ${geistMono.variable} ${rlMadena.variable} antialiased bg-stone-800 text-white`}>
 				<ThemeProvider attribute='class' defaultTheme='light' enableSystem disableTransitionOnChange>
-					<div className='bg-gradient-to-r from-[#ddd6f3] to-[#faaca8] fixed inset-0 -z-10 w-screen h-screen h-full animate-breathing'>
-					</div>
+					{/* <div className='bg-gradient-to-r from-[#ddd6f3] to-[#faaca8] fixed inset-0 -z-10 w-screen h-screen h-full animate-breathing'>
+					</div> */}
 
 					{children}
 				</ThemeProvider>

@@ -369,7 +369,50 @@
 					"description": "The data is not found"
 				}
 			}
-		}
+		},
+		"download_csv": {
+			"name": "Download CSV",
+			"description": "Downloads a CSV file containing the user's data for the specified date range",
+			"type": "POST",
+			"primary-function-file": "utils/data/csv.ts",
+			"primary-function": "download_csv",
+			"parameters": {
+				"user": {
+					"type": "string",
+					"required": true,
+					"description": "User"
+				},
+				"token": {
+					"type": "string",
+					"required": true,
+					"description": "Token"
+				},
+				"date_range": {
+					"type": "object { from: date, to: date }",
+					"required": true,
+					"description": "Date"
+				}
+			},
+			"responses": {
+				"success": {
+					"success": true,
+					"data": "A CSV file containing the user's data for the specified date range",
+					"message": "data.found",
+					"description": "Pulled the data successfully"
+				},
+				"user-not-found": {
+					"success": false,
+					"data": null,
+					"message": "error.auth.user.not-found",
+					"description": "The specified user is not found in the database"
+				},
+				"token-invalid": {
+					"success": false,
+					"data": null,
+					"message": "error.auth.token.invalid",
+					"description": "The given token does not match the user's token in the database"
+				}
+			}}
 	},
 	"structure": {
 		"get_structure": {
@@ -543,4 +586,5 @@
 			}
 		}
 	}
+	
 }

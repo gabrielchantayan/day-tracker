@@ -1,0 +1,111 @@
+{
+    "info": {
+        "version": 1,
+        "locale": "en-US",
+        "name": "English (US)",
+        "authors": {
+            "0": "Gabriel Chantayan"
+        }
+    },
+    "entries": {
+        "appName": "Day Tracker",
+        "language": {
+            "search-fluency": "Search fluency",
+            "search-language": "Search language",
+            "select-fluency": "Select fluency",
+            "select-language": "Select language",
+            "fluency": {
+                "advanced": "Advanced",
+                "beginner": "Beginner",
+                "conversational": "Conversational",
+                "fluent": "Fluent",
+                "intermediate": "Intermediate",
+                "native": "Native",
+                "professional": "Professional"
+            }
+        },
+        "prompts": {
+            "connect": "Connect",
+            "disconnect": "Disconnect",
+            "ai": {
+                "generate-interests": "Use AI to generate interests",
+                "generate-skills": "Use AI to generate skills"
+            },
+            "login": {
+                "email": "Please enter your email to log in"
+            },
+            "register": {
+                "account-registered": "Account registered!",
+                "are-you-ready": "Are you ready to get started?",
+                "basic-info": "First, we need some basic information",
+                "connect-accounts": "Connect your accounts",
+                "education": "Let's add your education",
+                "email": "Please enter your email to begin",
+                "get-started": "Let's get you started with an account",
+                "im-ready": "I'm ready!",
+                "interests": "What are your interests?",
+                "job-history": "Next, let's add your job history",
+                "languages": "What languages do you speak?",
+                "lets-review": "Let's review what we've got",
+                "projects": "Have any projects you'd like to add?",
+                "references": "Who are your references?",
+                "registering-account": "Registering account...",
+                "skills": "What skills do you have?"
+            }
+        },
+        "skills": {
+            "add-skills": "Add skills",
+            "suggest-skills": "Suggest skills",
+            "type-to-add": "Type to add skills"
+        },
+        "error": {
+            "404": "Page not found",
+            "500": "Internal server error",
+            "503": "Service unavailable",
+            "invalid-date-format-mm-yyyy": "Please enter a valid date in the format MM-YYYY",
+            "invalid-email": "Please enter a valid email address",
+            "less-than-x-chars": "must be less than {0} characters",
+            "more-than-x-chars": "must be more than {0} characters",
+            "need-one-job-or-education": "You need to add at least one job or education to continue",
+            "need-to-add-job": "You need to add at least one job to continue",
+            "account": {
+                "already-exists": "The email address is already registered. Please try logging in.",
+                "disabled": "Your account has been disabled. Please contact support.",
+                "invalid-credentials": "Invalid email or password",
+                "invalid-provider": "Invalid provider"
+            },
+            "api": {
+                "unauthorized": "Unauthorized",
+                "field": {
+                    "invalid": "Invalid field",
+                    "missing": "Missing field"
+                }
+            },
+            "auth": {
+                "user-not-found": "We could not find an account for {0}",
+                "token": {
+                    "invalid": "Invalid token",
+                    "missing": "Missing token"
+                }
+            },
+            "cooldown": {
+                "on-cooldown": "This action is on cooldown.",
+                "try-again-in": "Please try again in {0} seconds",
+                "try-again-later": "Please try again later"
+            },
+            "otp": {
+                "expired": "One-time password expired. Please try logging in again.",
+                "invalid": "Invalid one-time password",
+                "not-found": "We could not find a one-time password for {0}"
+            },
+            "register": {
+                "user-already-exists": "The email address is already registered. Please try logging in."
+            },
+            "token": {
+                "invalid": "Invalid token",
+                "missing": "Missing token",
+                "not-found": "We could not find a token for {0}"
+            }
+        }
+    }
+}

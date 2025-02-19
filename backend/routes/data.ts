@@ -20,4 +20,10 @@ router.post('/get_data', (req, res) => {
 router.post('/get_prefill', (req, res) => {
     return data.get_prefill(req, res);
 });
+
+// Download CSV
+// Downloads a CSV file containing the user's data for the specified date range
+router.post('/download_csv', (req, res) => {
+    return data.download_csv(req, res);
+});
 export default router;

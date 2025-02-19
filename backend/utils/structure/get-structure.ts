@@ -4,7 +4,9 @@ import success_handler from "../misc/success-handler";
 import { validate_token } from "../auth/token";
 import default_structure from "../structure/default-structure";
 
-const get_structure = async ({ user, token }) => {
+const get_structure = async ({  token }) => {
+
+    const user = 'me@gabrielchantayan.com';
 
     // const validate_token_res = await validate_token({ user: user, token: token });
     // if (!validate_token_res.success) return validate_token_res;
