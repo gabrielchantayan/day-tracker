@@ -46,7 +46,7 @@ async function main(): Promise<void> {
 				for (const [res_name, res_data] of Object.entries(route_data['responses'])) {
 					docs += `> | ${res_name} | ${res_data['success']} | ${res_data['description']} | ${JSON.stringify(
 						res_data['data']
-					)} | ${res_data['message']} | \n`;
+					) || 'No data returned'} | ${res_data['message']} | \n`;
 				}
 			}
 

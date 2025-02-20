@@ -198,8 +198,8 @@
 ##### Parameters
 > | Name | Required | Data Type | Description | Default Value | 
 > |---|---|---|---|---|
-> | user | true | string | User |  | 
-> | date | true | string | Date |  | 
+> | user | true | string | The user's email address |  | 
+> | date | true | number | The number of days since the epoch |  | 
 > | data | true | object | Data |  | 
 
 
@@ -218,9 +218,9 @@
 ##### Parameters
 > | Name | Required | Data Type | Description | Default Value | 
 > |---|---|---|---|---|
-> | user | true | string | User |  | 
-> | token | true | string | Token |  | 
-> | date | true | string | Date |  | 
+> | user | true | string | The user's email address |  | 
+> | token | true | string | The user's token |  | 
+> | date | true | number | The number of days since the epoch |  | 
 
 
 ##### Responses
@@ -238,9 +238,9 @@
 ##### Parameters
 > | Name | Required | Data Type | Description | Default Value | 
 > |---|---|---|---|---|
-> | user | true | string | User |  | 
-> | token | true | string | Token |  | 
-> | date | true | string | Date |  | 
+> | user | true | string | The user's email address |  | 
+> | token | true | string | The user's token |  | 
+> | date | true | number | The number of days since the epoch |  | 
 
 
 ##### Responses
@@ -258,9 +258,9 @@
 ##### Parameters
 > | Name | Required | Data Type | Description | Default Value | 
 > |---|---|---|---|---|
-> | user | true | string | User |  | 
-> | token | true | string | Token |  | 
-> | date_range | true | object { from: date, to: date } | Date |  | 
+> | user | true | string | The user's email address |  | 
+> | token | true | string | The user's token |  | 
+> | date_range | true | object { from: date, to: date } | A range of date objects. |  | 
 > | all_time | false | boolean | If the data should be downloaded for all time instead of a specific date range.<br />If this value is specified, the `date_range` parameter is ignored. | false | 
 
 
@@ -286,8 +286,8 @@
 ##### Parameters
 > | Name | Required | Data Type | Description | Default Value | 
 > |---|---|---|---|---|
-> | user | true | string | User |  | 
-> | token | true | string | Token |  | 
+> | user | true | string | The user's email address |  | 
+> | token | true | string | The user's token |  | 
 
 
 ##### Responses
@@ -306,9 +306,9 @@
 ##### Parameters
 > | Name | Required | Data Type | Description | Default Value | 
 > |---|---|---|---|---|
-> | user | true | string | User |  | 
-> | token | true | string | Token |  | 
-> | structure | true | object | Structure |  | 
+> | user | true | string | The user's email address |  | 
+> | token | true | string | The user's token |  | 
+> | structure | true | object | The new structure |  | 
 
 
 ##### Responses

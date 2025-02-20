@@ -266,12 +266,12 @@
 				"user": {
 					"type": "string",
 					"required": true,
-					"description": "User"
+					"description": "The user's email address"
 				},
 				"date": {
-					"type": "string",
+					"type": "number",
 					"required": true,
-					"description": "Date"
+					"description": "The number of days since the epoch"
 				},
 				"data": {
 					"type": "object",
@@ -304,17 +304,17 @@
 				"user": {
 					"type": "string",
 					"required": true,
-					"description": "User"
+					"description": "The user's email address"
 				},
 				"token": {
 					"type": "string",
 					"required": true,
-					"description": "Token"
+					"description": "The user's token"
 				},
 				"date": {
-					"type": "string",
+					"type": "number",
 					"required": true,
-					"description": "Date"
+					"description": "The number of days since the epoch"
 				}
 			},
 			"responses": {
@@ -342,17 +342,17 @@
 				"user": {
 					"type": "string",
 					"required": true,
-					"description": "User"
+					"description": "The user's email address"
 				},
 				"token": {
 					"type": "string",
 					"required": true,
-					"description": "Token"
+					"description": "The user's token"
 				},
 				"date": {
-					"type": "string",
+					"type": "number",
 					"required": true,
-					"description": "Date"
+					"description": "The number of days since the epoch"
 				}
 			},
 			"responses": {
@@ -380,17 +380,17 @@
 				"user": {
 					"type": "string",
 					"required": true,
-					"description": "User"
+					"description": "The user's email address"
 				},
 				"token": {
 					"type": "string",
 					"required": true,
-					"description": "Token"
+					"description": "The user's token"
 				},
 				"date_range": {
 					"type": "object { from: date, to: date }",
 					"required": true,
-					"description": "Date"
+					"description": "A range of date objects."
 				},
 				"all_time": {
 					"type": "boolean",
@@ -431,12 +431,12 @@
 				"user": {
 					"type": "string",
 					"required": true,
-					"description": "User"
+					"description": "The user's email address"
 				},
 				"token": {
 					"type": "string",
 					"required": true,
-					"description": "Token"
+					"description": "The user's token"
 				}
 			},
 			"responses": {
@@ -470,17 +470,17 @@
 				"user": {
 					"type": "string",
 					"required": true,
-					"description": "User"
+					"description": "The user's email address"
 				},
 				"token": {
 					"type": "string",
 					"required": true,
-					"description": "Token"
+					"description": "The user's token"
 				},
 				"structure": {
 					"type": "object",
 					"required": true,
-					"description": "Structure"
+					"description": "The new structure"
 				}
 			},
 			"responses": {
