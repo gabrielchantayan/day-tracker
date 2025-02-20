@@ -30,15 +30,23 @@ const DownloadDataForm = () => {
 	const [date, setDate] = useState<DateRange>();
 
 	return (
-		<div>
+		<div className='flex flex-col gap-2'>
 			<DateRangePicker onChange={setDate} />
 			<Button
 				onClick={() => {
 					download();
-				}}>
+				}}
+				className='w-64'>
 				Download Data
 			</Button>
-			{dl_uri && <a id="dl_uri" href={dl_uri} download>Download CSV</a>}
+
+			{dl_uri && (
+				<Button asChild className='w-64'>
+					<a id='dl_uri' href={dl_uri} download>
+						Download CSV
+					</a>
+				</Button>
+			)}
 		</div>
 	);
 };

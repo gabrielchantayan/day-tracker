@@ -1,6 +1,7 @@
 const api_url = 'http://localhost:2221/api/';
 // const api_url = 'https://track.gabech.com/api/';
 
+
 export const post = async (url: string[], data: any) => {
 
     
