@@ -32,10 +32,10 @@ async function main(): Promise<void> {
 
 			// Iterate through each post field
 			if (route_data['parameters']) {
-				docs += `##### Parameters\n> | Name | Required | Data Type | Description |\n> |---|---|---|---|\n`;
+				docs += `##### Parameters\n> | Name | Required | Data Type | Description | Default Value | \n> |---|---|---|---|---|\n`;
 
 				for (const [param_name, param_data] of Object.entries(route_data['parameters'])) {
-					docs += `> | ${param_name} | ${param_data['required']} | ${param_data['type']} | ${param_data['description']} | \n`;
+					docs += `> | ${param_name} | ${param_data['required']} | ${param_data['type']} | ${param_data['description']} | ${param_data['default'] || ''} | \n`;
 				}
 			}
 

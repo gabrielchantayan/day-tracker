@@ -10,10 +10,10 @@
 <summary><code>POST</code> <code><b>/api/account/register</b></code> <code>Registers a new account</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | email | true | string | Email address | 
-> | form_info | true | object | Form info | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | email | true | string | Email address |  | 
+> | form_info | true | object | Form info |  | 
 
 
 ##### Responses
@@ -29,11 +29,11 @@
 <summary><code>POST</code> <code><b>/api/account/login</b></code> <code>Logs in an account</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | email | true | string | Email address | 
-> | otp | true | string | One-time password | 
-> | reset_token | false | boolean | Reset the user's token upon login?<br />Default: FALSE | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | email | true | string | Email address |  | 
+> | otp | true | string | One-time password |  | 
+> | reset_token | false | boolean | Reset the user's token upon login? | false | 
 
 
 ##### Responses
@@ -56,9 +56,9 @@
 <summary><code>POST</code> <code><b>/api/auth/generate-otp</b></code> <code>Generates an OTP for a specified user</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | email | true | string | Email address | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | email | true | string | Email address |  | 
 
 
 ##### Responses
@@ -73,9 +73,9 @@
 <summary><code>POST</code> <code><b>/api/auth/resend-otp</b></code> <code>Resends an OTP for a specified user</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | email | true | string | Email address | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | email | true | string | Email address |  | 
 
 
 ##### Responses
@@ -92,10 +92,10 @@
 <summary><code>POST</code> <code><b>/api/auth/verify-otp</b></code> <code>Verifies an OTP for a specified user</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | email | true | string | Email address | 
-> | code | true | string | One-time password | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | email | true | string | Email address |  | 
+> | code | true | string | One-time password |  | 
 
 
 ##### Responses
@@ -113,10 +113,10 @@
 <summary><code>POST</code> <code><b>/api/auth/validate-token</b></code> <code>Validates a token for a specified user</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | email | true | string | Email address | 
-> | token | true | string | User's token | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | email | true | string | Email address |  | 
+> | token | true | string | User's token |  | 
 
 
 ##### Responses
@@ -136,9 +136,9 @@
 <summary><code>POST</code> <code><b>/api/auth/grant-user-new-token</b></code> <code>Grants a user a new token</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | user | true | string | User | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | user | true | string | User |  | 
 
 
 ##### Responses
@@ -154,9 +154,9 @@
 <summary><code>POST</code> <code><b>/api/auth/grant-user-token</b></code> <code>Grants a user their token if it exists. If not, it creates a new token</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | user | true | string | User | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | user | true | string | User |  | 
 
 
 ##### Responses
@@ -172,9 +172,9 @@
 <summary><code>POST</code> <code><b>/api/auth/revoke-user-token</b></code> <code>Revokes a user's token. Used for global logout</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | user | true | string | User | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | user | true | string | User |  | 
 
 
 ##### Responses
@@ -196,11 +196,11 @@
 <summary><code>POST</code> <code><b>/api/data/update_data</b></code> <code>Updates data</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | user | true | string | User | 
-> | date | true | string | Date | 
-> | data | true | object | Data | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | user | true | string | User |  | 
+> | date | true | string | Date |  | 
+> | data | true | object | Data |  | 
 
 
 ##### Responses
@@ -216,11 +216,11 @@
 <summary><code>POST</code> <code><b>/api/data/get_data</b></code> <code>Gets data</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | user | true | string | User | 
-> | token | true | string | Token | 
-> | date | true | string | Date | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | user | true | string | User |  | 
+> | token | true | string | Token |  | 
+> | date | true | string | Date |  | 
 
 
 ##### Responses
@@ -236,11 +236,11 @@
 <summary><code>POST</code> <code><b>/api/data/get_prefill</b></code> <code>Gets prefill</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | user | true | string | User | 
-> | token | true | string | Token | 
-> | date | true | string | Date | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | user | true | string | User |  | 
+> | token | true | string | Token |  | 
+> | date | true | string | Date |  | 
 
 
 ##### Responses
@@ -256,11 +256,12 @@
 <summary><code>POST</code> <code><b>/api/data/download_csv</b></code> <code>Downloads a CSV file containing the user's data for the specified date range</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | user | true | string | User | 
-> | token | true | string | Token | 
-> | date_range | true | object { from: date, to: date } | Date | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | user | true | string | User |  | 
+> | token | true | string | Token |  | 
+> | date_range | true | object { from: date, to: date } | Date |  | 
+> | all_time | false | boolean | If the data should be downloaded for all time instead of a specific date range.<br />If this value is specified, the `date_range` parameter is ignored. | false | 
 
 
 ##### Responses
@@ -283,10 +284,10 @@
 <summary><code>POST</code> <code><b>/api/structure/get_structure</b></code> <code>Gets structure</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | user | true | string | User | 
-> | token | true | string | Token | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | user | true | string | User |  | 
+> | token | true | string | Token |  | 
 
 
 ##### Responses
@@ -303,11 +304,11 @@
 <summary><code>POST</code> <code><b>/api/structure/update_structure</b></code> <code>Updates structure</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
-> | user | true | string | User | 
-> | token | true | string | Token | 
-> | structure | true | object | Structure | 
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | user | true | string | User |  | 
+> | token | true | string | Token |  | 
+> | structure | true | object | Structure |  | 
 
 
 ##### Responses
@@ -330,8 +331,8 @@
 <summary><code>POST</code> <code><b>/api/test/test</b></code> <code>Test API</code></summary>
 
 ##### Parameters
-> | Name | Required | Data Type | Description |
-> |---|---|---|---|
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
 
 
 ##### Responses

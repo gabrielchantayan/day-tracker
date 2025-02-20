@@ -1,204 +1,23 @@
-import { useForm } from 'react-hook-form';
-import { Form, FormControl, FormField, FormItem } from '../ui/form';
-import TextInput from './text-input';
-import NumberInput from './number-input';
-import MultipleSelector from '../ui/multiple-selector';
-import MultipleSelectorInput from './multi-select-input';
-import { Button } from '../ui/button';
 import { post } from '@/app/assets/js/api';
-import { get_date } from '@/app/assets/js/utils';
-import { Slider } from '../ui/slider';
-import SliderInput from './slider-input';
-import { Controller } from 'react-hook-form';
-import { useEffect } from 'react';
-import random_items from '@/components/form-objects/random-items.json';
-import TextWithNumbersInput from './text-with-numbers-input';
-import MultiTextWithNumbersInput from './multi-text-with-numbers-input';
 import { get_user } from '@/app/assets/js/auth';
+import { get_date } from '@/app/assets/js/utils';
+import random_items from '@/components/form-objects/random-items.json';
+import { date_string_to_days_since_epoch } from '@/lib/utils';
+import { useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { Button } from '../ui/button';
+import { Form } from '../ui/form';
+import MultipleSelectorInput from './multi-select-input';
+import MultiTextWithNumbersInput from './multi-text-with-numbers-input';
+import NumberInput from './number-input';
+import SliderInput from './slider-input';
+import TextInput from './text-input';
 import TextareaInput from './textarea-input';
 
 const get_random_item = (item: keyof typeof random_items) => {
 	return random_items?.[item]?.[Math.floor(Math.random() * random_items[item].length)] || null;
 };
 
-const structusre = [
-	{
-		name: 'Meals',
-		fields: [
-			{
-				name: 'Breakfast',
-				type: 'multi-select',
-			},
-			{
-				name: 'Lunch',
-				type: 'multi-select',
-			},
-			{
-				name: 'Dinner',
-				type: 'multi-select',
-			},
-			{
-				name: 'Snacks',
-				type: 'multi-select',
-			},
-		],
-	},
-	{
-		name: 'Substances',
-		fields: [
-			{
-				name: 'Cups of Coffee Drank',
-				type: 'number',
-			},
-			{
-				name: 'Cups of Tea Drank',
-				type: 'number',
-			},
-			{
-				name: 'Drinks',
-				type: 'number',
-			},
-		],
-	},
-	{
-		name: 'Life',
-		fields: [
-			{
-				name: 'Places Went',
-				type: 'multi-select',
-				placeholder: 'Type to add places',
-				options: [
-					{
-						label: 'Epic Universe',
-						value: 'Epic Universe',
-					},
-					{
-						label: 'Commodity',
-						value: 'Commodity',
-					},
-					{ label: 'Outlook', value: 'Outlook' },
-					{ label: "Aldi's", value: 'Aldis' },
-					{ label: 'Walmart', value: 'Walmart' },
-					{
-						label: "Austin's Coffee",
-						value: 'Austins Coffee',
-					},
-					{
-						label: "Zach and Julia's",
-						value: 'Zach and Julias',
-					},
-				],
-			},
-			{
-				name: 'Productivity',
-				type: 'multi-select',
-			},
-			{
-				name: 'Excersise',
-				type: 'multi-select',
-			},
-		],
-	},
-	{
-		name: 'Media',
-		fields: [
-			{
-				name: 'Books Read',
-				type: 'multi-select',
-			},
-			{
-				name: 'Movies Watched',
-				type: 'multi-select',
-			},
-			{
-				name: 'Shows Watched',
-				type: 'multi-select',
-			},
-			{
-				name: 'Games Played',
-				type: 'multi-select',
-			},
-		],
-	},
-	{
-		name: 'Language',
-		fields: [
-			{
-				name: 'Duolingo Language',
-				type: 'text',
-			},
-			{
-				name: 'Duolingo Lessons',
-				type: 'number',
-			},
-			{
-				type: 'break',
-			},
-			{
-				name: 'Mango Language',
-				type: 'text',
-			},
-			{
-				name: 'Mango Lessons',
-				type: 'number',
-			},
-			{
-				name: 'Mango Reviews',
-				type: 'number',
-			},
-		],
-	},
-	{
-		name: 'Emotions',
-		fields: [
-			{
-				name: 'Happiness',
-				type: 'slider',
-			},
-			{
-				name: 'Loneliness',
-				type: 'slider',
-			},
-			{
-				name: 'Anxiety',
-				type: 'slider',
-			},
-			{
-				name: 'Anger',
-				type: 'slider',
-			},
-			{
-				name: 'Exhaustion',
-				type: 'slider',
-			},
-			{
-				name: 'Stress',
-				type: 'slider',
-			},
-			{
-				name: 'Mania',
-				type: 'slider',
-			},
-		],
-	},
-	{
-		name: ';)',
-		fields: [
-			{
-				name: 'Current Woman',
-				type: 'multi-select',
-			},
-			{
-				name: 'Ժաժ տվի',
-				type: 'number',
-			},
-			{
-				name: 'սեքս',
-				type: 'number',
-			},
-		],
-	},
-];
 
 const FormBuilder = ({ structure, form, date = get_date() }: any) => {
 	const formd = useForm();
@@ -224,6 +43,8 @@ const FormBuilder = ({ structure, form, date = get_date() }: any) => {
 					default_values[field.name] = '';
 				} else if (field.type === 'multi-select') {
 					default_values[field.name] = [];
+				} else if (field.type === 'textarea') {
+					default_values[field.name] = '';
 				}
 			});
 		});
@@ -262,7 +83,11 @@ const FormBuilder = ({ structure, form, date = get_date() }: any) => {
 		const user_info = await get_user();
 
 		// Send a POST request to the server with the user's email and token, and the given date
-		const res = await post(['data', 'get_data'], { user: user_info.email, token: user_info.token, date: date });
+		const res = await post(['data', 'get_data'], {
+			user: user_info.email,
+			token: user_info.token,
+			date: date_string_to_days_since_epoch(date),
+		});
 
 		// If the server returns success, reset the form with the data from the server
 		if (res.success) {
@@ -284,7 +109,7 @@ const FormBuilder = ({ structure, form, date = get_date() }: any) => {
 		const user_info = await get_user();
 
 		// Get the current date
-		let current_date = date;
+		let current_date = date_string_to_days_since_epoch(date);
 
 		// Get the current user and token
 		let current_user = user_info.email;
@@ -296,6 +121,7 @@ const FormBuilder = ({ structure, form, date = get_date() }: any) => {
 			user: current_user,
 			token: token,
 			date: current_date,
+			data_version: 2,
 			// Send the form data
 			data: { ...formd.getValues() },
 		});

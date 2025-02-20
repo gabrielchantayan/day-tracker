@@ -391,6 +391,12 @@
 					"type": "object { from: date, to: date }",
 					"required": true,
 					"description": "Date"
+				},
+				"all_time": {
+					"type": "boolean",
+					"required": false,
+					"default": "false",
+					"description": "If the data should be downloaded for all time instead of a specific date range.<br />If this value is specified, the `date_range` parameter is ignored."
 				}
 			},
 			"responses": {
@@ -557,7 +563,8 @@
 				"reset_token": {
 					"type": "boolean",
 					"required": false,
-					"description": "Reset the user's token upon login?<br />Default: FALSE"
+					"default": "false",
+					"description": "Reset the user's token upon login?"
 				}
 			},
 			"responses": {

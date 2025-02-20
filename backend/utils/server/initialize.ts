@@ -1,4 +1,5 @@
 import { create_collection, collections } from "../db/db";
+import { upgrade_dates } from "./db-upgrade";
 
 /**
  * Initializes the MongoDB database by creating the collections
@@ -17,6 +18,8 @@ const initialize_database = async (): Promise<boolean> => {
 const initialize = async (): Promise<boolean> => {
 
     await initialize_database();
+
+    await upgrade_dates();
 
 
     return true;

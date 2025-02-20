@@ -1,4 +1,5 @@
 import { find } from '../db/mongo';
+import { date_string_to_days_since_epoch, days_since_epoch_to_date_string } from '../misc/date';
 import success_handler from '../misc/success-handler';
 
 /**
@@ -12,102 +13,115 @@ import success_handler from '../misc/success-handler';
  * @returns {string} The sanitized string
  */
 const sanitize = (str: string): string => {
-    // If string is a number, return it as is
-    if (typeof str === 'number') {
-        return str;
-    }
+	// If string is a number, return it as is
+	if (typeof str === 'number') {
+		return str;
+	}
 
-    // If the string contains a comma, it needs to be enclosed in quotes
-    if (str.includes(',')) {
-        // If the string also contains a double quote, it needs to be escaped
-        if (str.includes('"')) {
-            str = str.replace(/"/g, '""');
-        }
-        return `"${str}"`;
-    }
+	// If the string contains a comma, it needs to be enclosed in quotes
+	if (str.includes(',')) {
+		// If the string also contains a double quote, it needs to be escaped
+		if (str.includes('"')) {
+			str = str.replace(/"/g, '""');
+		}
+		return `"${str}"`;
+	}
 
-    // Otherwise, just return the string
-    return str;
+	// Otherwise, just return the string
+	return str;
 };
 
 /**
  * Downloads a CSV file containing the user's data for the specified date range.
  *
- * The CSV file will contain the date in the first column and each key-value pair
- * from the data object as a separate column. The values will be sanitized to
- * ensure that they do not contain any special characters that could cause issues
- * with the CSV file.
+ * If `all_time` is specified, the entire history of the user's data is returned.
  *
- * @param {{ user: string, token: string, date_range: { from: string, to: string } }} options
- * @returns {Promise<string>} The contents of the CSV file
+ * @param {string} user The user's email address
+ * @param {string} token The user's token
+ * @param {object} date_range A date range object with a `from` and `to` property, both of which are strings in the format 'YYYY-MM-DD'
+ * @param {boolean} [all_time=false] If true, the entire history of the user's data is returned
+ * @returns {Promise<{ success: boolean, data: string, message: string }>} A promise that resolves with an object containing the success status, the CSV file as a string, and a message
  */
-const download_csv = async ({ user, token, date_range }) => {
-  const ret = await find('days', { user: user });
+const download_csv = async ({
+	user,
+	token,
+	date_range,
+	all_time,
+}: {
+	user: string;
+	token: string;
+	date_range: { from: string; to: string };
+	all_time?: boolean;
+}) => {
+	// Find all the days in the specified date range
+	// If `all_time` is specified, find all the days for the user
+	// Otherwise, find all the days in the specified date range
+	const ret = await (async () => {
+		if (all_time) {
+			// Find all the days for the user
+			return await find('days', { user });
+		} else {
+			// Find all the days in the specified date range
+			// The date range is inclusive, so we need to subtract 1 from the start date and add 1 to the end date
+			// to ensure that we get all the days in the range
+			return await find('days', {
+				user,
+				date: {
+					$gte: date_string_to_days_since_epoch(date_range.from) - 1,
+					$lte: date_string_to_days_since_epoch(date_range.to) + 1,
+				},
+			});
+		}
+	})();
 
-  // Create a set of all the keys in the data object
-  const headersSet = new Set(['Date']);
+	// Create a set of all the keys in the data object
+	const headersSet = new Set(['Date']);
 
-  // Create an array of arrays, where each sub-array is a row in the CSV file
-  const js = ret.reduce((acc, day) => {
-    const dayData = {};
-    // Iterate over the key-value pairs in the data object
-    for (const [key, value] of Object.entries(day['data'])) {
-      // Skip the _id field
-      if (key === '_id') continue;
-      // Add the key to the set of headers
-      headersSet.add(key);
-      // Sanitize the value
-      if (value.hasOwnProperty('value')) {
-        dayData[key] = value['value'];
-      } else if (Array.isArray(value)) {
-        dayData[key] = sanitize(value.map((v) => v['value'] || v).join(','));
-      } else {
-        dayData[key] = sanitize(value as string);
-      }
-    }
-    // Add the row to the array
-    acc[day.date] = dayData;
-    return acc;
-  }, {});
+	// Create an array of arrays, where each sub-array is a row in the CSV file
+	const js = ret.reduce((acc, day) => {
+		const dayData = {};
+		// Iterate over the key-value pairs in the data object
+		for (const [key, value] of Object.entries(day['data'])) {
+			// Skip the _id field
+			if (key === '_id') continue;
+			// Add the key to the set of headers
+			headersSet.add(key);
+			// Sanitize the value
+			if (value.hasOwnProperty('value')) {
+				dayData[key] = value['value'];
+			} else if (Array.isArray(value)) {
+				dayData[key] = sanitize(value.map((v) => v['value'] || v).join(','));
+			} else {
+				dayData[key] = sanitize(value as string);
+			}
+		}
+		// Add the row to the array
+		acc[day.date] = dayData;
+		return acc;
+	}, {});
 
-  // Convert the set of headers to an array
-  const headers = Array.from(headersSet);
+	// Convert the set of headers to an array
+	const headers = Array.from(headersSet);
 
-  // Create an array of strings, where each string is a row in the CSV file
-  const csv = Object.entries(js).map(([date, values]) => {
-    // Create an array of strings, where each string is a column in the row
-    const row = [date];
-    // Iterate over the headers and add the corresponding value to the row
-    for (const header of headers) {
-        if (header === 'Date') {
-            continue;
-        }
-      row.push(values[header] || '');
-    }
-    // Join the columns with commas
-    return row.join(',');
-  });
+	// Create an array of strings, where each string is a row in the CSV file
+	const csv = Object.entries(js).map(([date, values]) => {
+		// Create an array of strings, where each string is a column in the row
+		const row = [days_since_epoch_to_date_string(date as unknown as number)];
+		// Iterate over the headers and add the corresponding value to the row
+		for (const header of headers) {
+			if (header === 'Date') {
+				continue;
+			}
+			row.push(values[header] || '');
+		}
+		// Join the columns with commas
+		return row.join(',');
+	});
 
-  // Join the rows with newlines
-  const csvContent = headers.join(',') + '\n' + csv.join('\n');
+	// Join the rows with newlines
+	const csvContent = headers.join(',') + '\n' + csv.join('\n');
 
-  return success_handler(true, csvContent, 'data.found');
+	return success_handler(true, csvContent, 'data.found');
 };
 
-/**
- * Converts a date string in the format YYYY/M/D to a Date object.
- * Assumes the time is 00:00:00 +0 UTC.
- *
- * @param {string} dateStr - The date string in the format YYYY/M/D.
- * @returns {Date} - The Date object representing the given date at 00:00:00 UTC.
- */
-function convertDateStringToDate(dateStr: string): Date {
-	const [year, month, day] = dateStr.split('/').map(Number);
-	return new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
-}
-
 export { download_csv };
-
-function ISODate(dateString: string): Date {
-	return new Date(dateString);
-}
