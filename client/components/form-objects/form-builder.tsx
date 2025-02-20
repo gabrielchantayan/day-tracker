@@ -230,7 +230,7 @@ const FormBuilder = ({ structure, form, date = get_date() }: any) => {
 					);
 				})}
 
-				<Button type='button' variant={'glass'} onClick={handle_submit}>
+				<Button type='button' variant={'secondary'} onClick={handle_submit}>
 					Save Changes
 				</Button>
 			</form>

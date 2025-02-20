@@ -73,7 +73,12 @@ export default function Track({token, email} : any) {
 								</p>
 							</PopoverTrigger>
 							<PopoverContent className='ml-10'>
-								<Calendar mode='single' onSelect={(d: any) => change_date(d)} />
+								<Calendar
+									mode='single'
+									onSelect={(d: any) => change_date(d)}
+									selected={new Date(get_date(delta)) }
+									defaultMonth={new Date(get_date(delta))}
+								/>
 							</PopoverContent>
 						</Popover>
 						<div className='flex flex-row justify-between w-full'>

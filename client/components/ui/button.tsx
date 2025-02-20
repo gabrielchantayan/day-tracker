@@ -5,18 +5,19 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-	'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+	'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] active:shadow-md transition-all duration-150 ease-in-out',
 	{
 		variants: {
 			variant: {
-				default: 'bg-stone-700 text-primary-foreground shadow hover:bg-stone-600',
+				default: 'bg-stone-700 text-stone-100 shadow hover:bg-stone-600',
 				destructive: 'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
 				outline: 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
-				secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
+				secondary: 'bg-stone-300 text-stone-900 shadow hover:bg-stone-200',
 				ghost: 'hover:bg-accent hover:text-accent-foreground',
 				link: 'text-primary underline-offset-4 hover:underline',
-				glass: 'bg-white/40 shadow-md backdrop-blur-sm border border-black/30 hover:bg-white/[0.63] hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] active:shadow-md transition-all duration-150 ease-in-out',
-				glass_secondary: 'bg-black/80 shadow-md backdrop-blur-sm border border-black/30 hover:bg-black/[0.98] hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] active:shadow-md transition-all duration-150 ease-in-out text-white',
+				glass: 'bg-white/40 shadow-md backdrop-blur-sm border border-black/30 hover:bg-white/[0.63] ',
+				glass_secondary:
+					'bg-black/80 shadow-md backdrop-blur-sm border border-black/30 hover:bg-black/[0.98] hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] active:shadow-md transition-all duration-150 ease-in-out text-white',
 			},
 			size: {
 				default: 'h-9 px-4 py-2',
