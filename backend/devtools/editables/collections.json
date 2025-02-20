@@ -1,172 +1,63 @@
 {
-    "cooldowns" : {
-        "name" : "Cooldowns",
-        "description" : "Cooldowns for users",
-        "usage": "Cooldowns",
-        "data-structure" : {
-            "user" : {
-                "type" : "string",
-                "required" : true,
-                "description" : "The user's email address"
-            },
-            "cooldown_type" : {
-                "type" : "string",
-                "required" : true,
-                "description" : "The type of cooldown"
-            },
-            "cooldown" : {
-                "type" : "number",
-                "required" : true,
-                "description" : "The time when the cooldown will expire"
-            }
-        }
-    },
-    "otp" : {
-        "name" : "One-time passwords",
-        "description" : "One-time passwords for users",
-        "usage": "One-time passwords",
-        "data-structure" : {
-            "user" : {
-                "type" : "string",
-                "required" : true,
-                "description" : "The user's email address"
-            },
-            "otp" : {
-                "type" : "string",
-                "required" : true,
-                "description" : "The one-time password"
-            },
-            "expiry" : {
-                "type" : "number",
-                "required" : true,
-                "description" : "The time when the OTP will expire<br />Default: 15 minutes"
-            }
-        }
-    },
-    "campaigns" : {
-        "name" : "Campaigns",
-        "description" : "Campaigns for users",
-        "usage": "Campaigns",
-        "data-structure" : {
-            "user" : {
-                "type" : "bson.ObjectId",
-                "required" : true,
-                "description" : "The user's ID"
-            },
-            "title" : {
-                "type" : "string",
-                "required" : true,
-                "description" : "The title of the campaign. By default, this is the name of the job being searched."
-            },
-            "sources" : {
-                "type" : "string[]",
-                "required" : true,
-                "description" : "The sources of the campaign"
-            },
-            "salary-min" : {
-                "type" : "number",
-                "required" : true,
-                "description" : "The minimum salary to be searched"
-            },
-            "salary-max" : {
-                "type" : "number",
-                "required" : true,
-                "description" : "The maximum salary to be searched"
-            },
-            "location" : {
-                "type" : "[ string, boolean ][]",
-                "required" : true,
-                "description" : "The locations to be searched.<br /> [ 0: city, 1: remote ]"
-            }
-        }
-    },
-    "external-accounts" : {
-        "name" : "External accounts",
-        "description" : "User's accounts for external job boards",
-        "usage": "External accounts",
-        "data-structure" : {
-            "user" : {
-                "type" : "string",
-                "required" : true,
-                "description" : "The email account associated with the internal user account"
-            },
-			"provider": {
+	"days": {
+		"name": "Days",
+		"description": "Contains the data for each inputted day",
+		"usage": "Tracking day-to-day data",
+		"data-structure": {
+			"user": {
 				"type": "string",
 				"required": true,
-				"description": "The provider"
+				"description": "The user's email address"
 			},
-			"username": {
-				"type": "string",
+			"date": {
+				"type": "number",
 				"required": true,
-				"description": "The user's username or email address"
+				"description": "The number of days since the epoch"
 			},
-			"password": {
-				"type": "string",
+			"data": {
+				"type": "object",
 				"required": true,
-				"description": "A PGP-encrypted password"
+				"description": "The data for the user's day. This will vary depending on what the user had filled out and what the user's structure is"
+			},
+			"data_version": {
+				"type": "number",
+				"required": true,
+				"description": "The version of the data. Current: 2"
 			}
 		}
-    },
-    "users" : {
-        "name" : "Users",
-        "description" : "Users",
-        "usage": "Users",
-        "data-structure" : {
-            "first_name" : {
-                "type" : "string",
-                "required" : true,
-                "description" : "The user's first name"
-            },
-            "last_name" : {
-                "type" : "string",
-                "required" : true,
-                "description" : "The user's last name"
-            },
-            "account_email" : {
-                "type" : "string",
-                "required" : true,
-                "description" : "The email address the user uses to sign in"
-            },
-            "email" : {
-                "type" : "string",
-                "required" : true,
-                "description" : "The user's email address used on the resume"
-            },
-            "phone" : {
-                "type" : "string",
-                "required" : true,
-                "description" : "The user's phone number"
-            },
-            "plan" : {
-                "type" : "string",
-                "required" : true,
-                "description" : "The user's plan"
-            },
-            "created_at" : {
-                "type" : "timestamp",
-                "required" : true,
-                "description" : "The time when the user was created"
-            },
-            "updated_at" : {
-                "type" : "timestamp",
-                "required" : true,
-                "description" : "The time when the user was updated"
-            },
-            "last_login_at" : {
-                "type" : "timestamp",
-                "required" : true,
-                "description" : "The time when the user last logged in"
-            },
-            "status" : {
-                "type" : "string",
-                "required" : true,
-                "description" : "The user's status<br />[ active, inactive, banned ]"
-            },
-            "resume" : {
-                "type" : "object",
-                "required" : true,
-                "description" : "The user's resume"
-            }
-        }
-    }
+	},
+	"prefill": {
+		"name": "Prefill",
+		"description": "Every single item that the user has entered in their tracker.",
+		"usage": "Provides data for the user to prefill in dropdowns",
+		"data-structure": {
+			"user": {
+				"type": "string",
+				"required": true,
+				"description": "The user's email address"
+			},
+			"data": {
+				"type": "object",
+				"required": true,
+				"description": "Each category's prefilled values. This will vary depending on what the user had filled out and what the user's structure is."
+			}
+		}
+	},
+	"structure": {
+		"name": "Structure",
+		"description": "The user's structures",
+		"usage": "Used for building out the day tracker form",
+		"data-structure": {
+			"user": {
+				"type": "string",
+				"required": true,
+				"description": "The user's email address"
+			},
+			"structure": {
+				"type": "array[{ name: STRING, fields: [ { name: STRING, type: STRING } ] }]",
+				"required": true,
+				"description": "The structure of the user's data."
+			}
+		}
+	}
 }
