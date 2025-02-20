@@ -321,24 +321,3 @@
 
 </details>
 
-
-
----
-
-#### TEST
-
-<details>
-<summary><code>POST</code> <code><b>/api/test/test</b></code> <code>Test API</code></summary>
-
-##### Parameters
-> | Name | Required | Data Type | Description | Default Value | 
-> |---|---|---|---|---|
-
-
-##### Responses
-
-> | Name | Success | Description | Data | Message | 
-> |---|---|---|---|---|
-
-</details>
-

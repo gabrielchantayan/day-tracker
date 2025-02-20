@@ -56,8 +56,8 @@ const main = async (): Promise<void> => {
 		}
 
 		// Delete any filex that arent in route_list
-		const files = await readdir(`./controllers/${route}`);
-		for (const file of files) {
+		const controller_files = await readdir(`./controllers/${route}`);
+		for (const file of controller_files) {
 			if (!current_route_endpoints.includes(file.replace(/\.ts$/, ''))) {
 				await unlink(`./controllers/${route}/${file}`);
 			}

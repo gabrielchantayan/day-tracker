@@ -20,6 +20,8 @@ async function main(): Promise<void> {
 
 		docs += `#### ${collection_data['name']}\n\n`;
 
+		docs += `**Usage:** ${collection_data['usage']}\n\n`;
+
 		docs += `##### Fields\n\n| Name | Required | Data Type | Description |\n|---|---|---|---|\n`;
 
 		for (const [field, field_data] of Object.entries(collection_data['data-structure'])) {

@@ -4,6 +4,8 @@
 
 #### Days
 
+**Usage:** Tracking day-to-day data
+
 ##### Fields
 
 | Name | Required | Data Type | Description |
@@ -18,6 +20,8 @@
 
 #### Prefill
 
+**Usage:** Provides data for the user to prefill in dropdowns
+
 ##### Fields
 
 | Name | Required | Data Type | Description |
@@ -29,6 +33,8 @@
 <details><summary><code><b>structure</b></code> <code>The user's structures</code></summary>
 
 #### Structure
+
+**Usage:** Used for building out the day tracker form
 
 ##### Fields
 
