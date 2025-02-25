@@ -26,4 +26,10 @@ router.post('/get_prefill', (req, res) => {
 router.post('/download_csv', (req, res) => {
     return data.download_csv(req, res);
 });
+
+// Get summary
+// Gets a summary of the user's data for the specified date range
+router.post('/get_summary', (req, res) => {
+    return data.get_summary(req, res);
+});
 export default router;

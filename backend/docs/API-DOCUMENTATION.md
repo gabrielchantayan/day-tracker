@@ -274,6 +274,28 @@
 
 </details>
 
+<details>
+<summary><code>POST</code> <code><b>/api/data/get_summary</b></code> <code>Gets a summary of the user's data for the specified date range</code></summary>
+
+##### Parameters
+> | Name | Required | Data Type | Description | Default Value | 
+> |---|---|---|---|---|
+> | user | true | string | The user's email address |  | 
+> | token | true | string | The user's token |  | 
+> | date_range | true | object { from: date, to: date } | A range of date objects. |  | 
+> | all_time | false | boolean | If the data should be downloaded for all time instead of a specific date range.<br />If this value is specified, the `date_range` parameter is ignored. | false | 
+
+
+##### Responses
+
+> | Name | Success | Description | Data | Message | 
+> |---|---|---|---|---|
+> | success | true | Pulled the data successfully | "A CSV file containing the user's data for the specified date range" | data.found | 
+> | user-not-found | false | The specified user is not found in the database | null | error.auth.user.not-found | 
+> | token-invalid | false | The given token does not match the user's token in the database | null | error.auth.token.invalid | 
+
+</details>
+
 
 
 ---

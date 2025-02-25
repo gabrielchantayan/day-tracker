@@ -4,7 +4,7 @@ import success_handler from "../misc/success-handler";
 import { validate_token } from "../auth/token";
 import default_structure from "../structure/default-structure";
 
-const get_structure = async ({  token }) => {
+export const get_structure_with_prefills = async ({  token }) => {
 
     const user = 'me@gabrielchantayan.com';
 
@@ -14,7 +14,7 @@ const get_structure = async ({  token }) => {
     const structure = await find_one('structures', { user: user });
 
 
-        const prefills = await find_one('prefill', { user: user });
+    const prefills = await find_one('prefill', { user: user });
 
     if (!!prefills) {
         for (const [category, fields] of Object.entries(structure.structure)) {
@@ -44,5 +44,46 @@ const get_structure = async ({  token }) => {
     return success_handler(true, structure);
 };
 
-export  {get_structure}
 
+
+export const get_structure = async ({  }) => {
+
+    const user = 'me@gabrielchantayan.com';
+
+    const structure = await find_one('structures', { user: user });
+
+    console.log(structure)
+
+    if (!structure) {
+        log_db(`Structure not found for user ${user}`);
+        return success_handler(false, null, 'error.structure.not-found');
+    }    
+
+    return success_handler(true, structure);
+};
+
+
+export const get_field_data_types = async ({  }) => {
+
+    const user = 'me@gabrielchantayan.com';
+
+    const structure = await find_one('structures', { user: user });
+
+    if (!structure) {
+        log_db(`Structure not found for user ${user}`);
+        return success_handler(false, null, 'error.structure.not-found');
+    }
+
+    const data_types = {
+
+    }
+
+    for (const [category, fields] of Object.entries(structure.structure)) {
+        for (const [field, value] of Object.entries(fields['fields'] as { any })) {
+            data_types[value.name] = value.type;
+        }
+    }
+
+    return success_handler(true, data_types);
+
+}

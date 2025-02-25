@@ -1,6 +1,6 @@
-import { find } from '../db/mongo';
-import { date_string_to_days_since_epoch, days_since_epoch_to_date_string } from '../misc/date';
+import { days_since_epoch_to_date_string } from '../misc/date';
 import success_handler from '../misc/success-handler';
+import { get_user_data } from './data';
 
 /**
  * Sanitizes a string for use in a CSV file.
@@ -56,23 +56,7 @@ const download_csv = async ({
 	// Find all the days in the specified date range
 	// If `all_time` is specified, find all the days for the user
 	// Otherwise, find all the days in the specified date range
-	const ret = await (async () => {
-		if (all_time) {
-			// Find all the days for the user
-			return await find('days', { user });
-		} else {
-			// Find all the days in the specified date range
-			// The date range is inclusive, so we need to subtract 1 from the start date and add 1 to the end date
-			// to ensure that we get all the days in the range
-			return await find('days', {
-				user,
-				date: {
-					$gte: date_string_to_days_since_epoch(date_range.from) - 1,
-					$lte: date_string_to_days_since_epoch(date_range.to) + 1,
-				},
-			});
-		}
-	})();
+	const ret = await get_user_data(user, date_range.from, date_range.to, all_time);
 
 	// Create a set of all the keys in the data object
 	const headersSet = new Set(['Date']);
