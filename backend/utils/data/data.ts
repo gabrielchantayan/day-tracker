@@ -18,8 +18,8 @@ export const update_data = async ({ date, data }) => {
 	const user = 'me@gabrielchantayan.com';
 	// Check if days exist
 	const db_day = await find_one('days', { user: user, date: date });
-	if (!db_day) insert('days', { user: user, date: date, data: data });
-	else update('days', { user: user, date: date }, { data: data });
+	if (!db_day) insert('days', { user: user, date: date, data: data, data_version: 3 });
+	else update('days', { user: user, date: date }, { data: data, data_version: 3 });
 
 	const db_prefill = await find_one('prefill', { user: user });
 	if (!db_prefill) {
